@@ -6,13 +6,14 @@ and open the template in the editor.
         include '/constants.php';
         if (empty($_POST))
         {
-        if (mail("iam32five@gmail.com", "theme", "text", "blackandwhite_91@mail.ru")==false)
-        {
-            echo "dsd";
-
-        }
-        else
-            echo "1111111111111111";
+//        if (mail("iam32five@gmail.com", "theme", "text", "blackandwhite_91@mail.ru")==false)
+//        {
+//            echo "dsd";
+//
+//        }
+//        else
+//            echo "1111111111111111";
+           fff();
         }
           
 ?>
