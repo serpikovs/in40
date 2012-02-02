@@ -4,16 +4,9 @@ and open the template in the editor.
 -->
 <?php
         include '/constants.php';
-        if (empty($_POST))
+        if (!empty($_POST))
         {
-//        if (mail("iam32five@gmail.com", "theme", "text", "blackandwhite_91@mail.ru")==false)
-//        {
-//            echo "dsd";
-//
-//        }
-//        else
-//            echo "1111111111111111";
-           fff();
+           echo 1;
         }
           
 ?>
