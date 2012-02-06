@@ -1,0 +1,254 @@
+/* Файл стиля */
+/* Страница делится на главные части, которые созданы лишь для организации 
+подвала. Каждая часть состоит из областей. 
+Области нужны для разметки и содержат только данные о размерах и фоне.
+Почти каждая область представляет из себя список. Списки содержат информацию
+о цвете, шрифтах и прочем.
+*/
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    list-style: none;
+}
+
+html, body
+{
+    height: 100%;
+    font: 13px sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+a
+{
+    color: #4CA6CF;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+a:hover
+{
+    color: #d52;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/*
+=Главные части страницы=
+*/
+
+/* все, кроме подвала */
+.top-part
+{
+    margin-bottom: -40px;
+    min-height: 100%;
+}
+
+/* подвал */
+.bottom-part
+{
+    height: 40px;
+}
+
+
+
+/*
+=Области страницы=
+*/
+
+/* область чердака */
+.header-area
+{
+    background: #ccc;
+    height: 80px;
+    font-size: 48px;
+    line-height: 80px;
+    color: #555;
+}
+
+/* область меню */
+.menu-area
+{
+    background: #eee;
+    display: block;
+    height: 35px;
+}
+
+/* область под меню */
+.submenu-area
+{
+    background: #eee;
+    height: 20px;
+    font-size: smaller;
+    line-height: 15px;
+}
+
+.content-area
+{
+     
+}
+
+.buffer-area
+{
+    clear: both;
+    height: 40px;
+}
+
+.footer-area
+{
+     background: #eee;  
+     height: 100%;
+}
+
+/* Обертка-колонка */
+.wrapper
+{
+    width: 800px;
+    margin: 0 auto;
+}
+
+
+/* списки */
+.menu > li > *
+{
+    font-size: larger;
+    line-height: 35px;
+    float: left;
+    margin-right: 20px;
+    color: #666;
+    text-shadow: #fff 0px 1px 0px;
+    border: none;
+}
+
+.menu > li > *:hover
+{
+    color: #d52;
+}
+
+.navigation > li > *
+{
+    font-size: 10px;
+    line-height: 12px;
+    float: left;
+    margin-right: 4px;
+}
+
+.reg-log > li > *
+{
+    color: #666;
+    float: right;
+    font-size: 10px;
+    line-height: 12px;
+    margin-left: 4px;
+}
+
+.reg-log > li > input[type="text"]
+{
+    width: 100px;
+}
+
+.messages > li
+{
+    clear: both;
+    overflow: auto;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* сообщения */
+
+.msg-row
+{
+    clear: both;
+    /*border: 1px solid red;*/
+}
+
+.user-photo, .user-info-area, .msg-body
+{
+    float: left;
+    /*border: 1px solid red;*/
+    margin-right: 3px;
+}
+
+
+.user-photo
+{
+    width: 55px;
+    height: 55px;
+    background: #eee;
+    border: 2px white solid;
+}
+
+.user-info-area
+{
+    width: 200px;
+}
+
+
+.user-nickname
+{
+    font-weight: bold;
+}
+
+.user-group, .msg-date
+{
+    font-size: smaller;
+}
+
+.msg-body
+{
+    width: 520px;
+}
+
+.reply-area
+{
+    /*border-width: 1px;
+    border-style: solid;*/
+    text-align: right;
+}
+
+.reply-minus, .reply-plus, .positive
+{
+    margin-left: 2px;
+}
+
+.reply-minus, .reply-plus
+{
+    font-family: monospace;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    padding: 0px 4px;
+    text-align: center;
+}
+
+.positive
+{
+    color: #393;
+    font-family: Georgia;
+}
+
+.reply-plus
+{
+    color: #393;
+    border-color: #393;
+}
+
+.reply-minus
+{
+    color: #e55;
+    border-color: #e55;
+}
+
+.reply-ans
+{
+    margin-left: 30px;
+
+}
