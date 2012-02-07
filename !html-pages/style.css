@@ -83,9 +83,9 @@ a:hover
 .submenu-area
 {
     background: #eee;
-    height: 20px;
-    font-size: smaller;
-    line-height: 15px;
+    /*height: 20px;*/
+    /*font-size: smaller;
+    line-height: 15px;*/
 }
 
 .content-area
@@ -110,52 +110,71 @@ a:hover
 {
     width: 800px;
     margin: 0 auto;
+    overflow: auto;
 }
 
 
 /* списки */
-.menu > li > *
+.menu-item
 {
-    font-size: larger;
+    display: inline;
     line-height: 35px;
-    float: left;
     margin-right: 20px;
-    color: #666;
     text-shadow: #fff 0px 1px 0px;
+    font-size: 16px;
+    /*border: solid 1px red;*/
+}
+
+.menu-item *
+{
+    color: #666;
     border: none;
 }
 
-.menu > li > *:hover
+.menu-item a:hover
 {
-    color: #d52;
+    /*color: #d52;*/
+    border: none;
 }
 
-.navigation > li > *
+.twrapper
 {
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.nav-item
+{
+    display: inline;
+    margin-right: 4px; 
+    /*line-height: 12px;*/  
     font-size: 10px;
-    line-height: 12px;
-    float: left;
-    margin-right: 4px;
 }
 
-.reg-log > li > *
+.login-item
 {
+    display: inline;
     color: #666;
-    float: right;
+    margin-left: 4px; 
     font-size: 10px;
-    line-height: 12px;
-    margin-left: 4px;
 }
 
-.reg-log > li > input[type="text"]
+.login-item input[type="text"]
 {
     width: 100px;
+    font-size: 10px;
+    color: #333;
 }
 
-.messages > li
+.login-item input[type="checkbox"]
+{
+    position: relative;
+    top: 3px;
+}
+
+.messages li
 {
     clear: both;
-    overflow: auto;
     margin-top: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid #eee;
