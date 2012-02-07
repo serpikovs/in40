@@ -1,28 +1,29 @@
 <?php
 /*
- * 
+ * Проект: Katrin
  * Шаблонизатор
  */
 
-
-
-function load_page($current_tpl)
+function tpl_load($current_tpl, $vars)
 {
-    global $template_path;
+    /* получаем имя текущей темы.
+     * потом это будет в настройках
+     */
+    global $tpl_name;
     
-    load_header();
-    //load_menu();
-    //load_body();
-    //load_footer();
+    /* получаем полный путь до темы
+     * пока так
+     */
+    $full_tpl_path = 'templates/'.$tpl_name;
+    
+    // проверяем на наличие шаблона:
+    if (!file_exists($full_tpl_path.'/'.$current_tpl)) 
+	    die('Шаблона '.$full_tpl_path.'/'.$current_tpl.' не существует!');
+    
+    // загружаем шаблон
+    ob_start();
+    include($full_tpl_path."/".$current_tpl);
+    return ob_get_clean();
 }
-
-
-function load_header()
-{
-    
-    include $template_path.'/'."cat.tpl";
-    
-}
-
 
 ?>
