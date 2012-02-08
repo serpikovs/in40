@@ -33,9 +33,12 @@ $menu_vars['caption'] = 'Обсуждения';
 $menu_vars['link'] = '#';
 $page_areas['menu'] = $page_areas['menu'].tpl_load("menu-item.tpl", $menu_vars);
 
-$menu_vars['caption'] = 'Статья 1';
-$menu_vars['link'] = '#';
-$page_areas['menu'] = $page_areas['menu'].tpl_load("menu-item.tpl", $menu_vars);
+for ($i = 1; $i <= 10; $i++)
+{
+    $menu_vars['caption'] = 'Статья&nbsp;'.$i;
+    $menu_vars['link'] = '#';
+    $page_areas['menu'] = $page_areas['menu'].tpl_load("menu-item.tpl", $menu_vars);
+}
 
 unset($menu_vars);
 
