@@ -62,6 +62,12 @@
 				    <li class="login-item">
 					<a href="#">Войти</a>
 				    </li>
+				    <li class="login-item">
+					|
+				    </li>
+				    <li class="login-item">
+					<a href="#">Регистрация</a>
+				    </li>
 				</ul>
 			    </td>
 			</tr>
@@ -70,7 +76,7 @@
 	    </div>
 	    <div id="content-area">
 		<div class="wrapper">
-		    <ul class="messages">
+		    <ul class="content messages">
 			<li>
 			    <div class="msg-row">
 				<div class="user-photo"></div>
