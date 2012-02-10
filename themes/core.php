@@ -16,7 +16,7 @@ function tpl_load($current_tpl, $vars)
      * получаем полный путь до темы
      * пока так
      */
-    $full_tpl_path = 'templates/'.$tpl_name;
+    $full_tpl_path = 'themes/'.$tpl_name;
     
     // проверяем на наличие шаблона:
     if (!file_exists($full_tpl_path.'/'.$current_tpl)) 

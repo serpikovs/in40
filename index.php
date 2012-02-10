@@ -1,10 +1,10 @@
 <html>
     
     <?php
-        include("/constants.php");
+        include("scripts/constants.php");
         //include("/scripts/correct_strings.php");
-        include_once("/db_scripts/select.php");
-        include_once("/db_scripts/insert.php");
+        include_once("scripts/db/select.php");
+        include_once("scripts/db/insert.php");
         
         define("FOO", "something");
         

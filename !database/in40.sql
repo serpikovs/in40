@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 10 2012 г., 19:43
+-- Время создания: Фев 10 2012 г., 19:22
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -168,12 +168,12 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `body` text NOT NULL,
   `is_first` tinyint(1) NOT NULL,
   `date` datetime NOT NULL,
-  `theme_id` int(11) NOT NULL,
+  `topic_id` int(11) NOT NULL,
   `voite_y` int(11) NOT NULL,
   `voite_n` int(11) NOT NULL,
   `header` varchar(255) NOT NULL,
-  UNIQUE KEY `id` (`id`,`theme_id`),
-  KEY `theme_id` (`theme_id`)
+  UNIQUE KEY `id` (`id`,`topic_id`),
+  KEY `theme_id` (`topic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -194,10 +194,10 @@ CREATE TABLE IF NOT EXISTS `private_messages` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `themes`
+-- Структура таблицы `topics`
 --
 
-CREATE TABLE IF NOT EXISTS `themes` (
+CREATE TABLE IF NOT EXISTS `topics` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -323,13 +323,13 @@ ALTER TABLE `poll_variants`
 -- Ограничения внешнего ключа таблицы `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `themes`
+-- Ограничения внешнего ключа таблицы `topics`
 --
-ALTER TABLE `themes`
-  ADD CONSTRAINT `themes_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `topics`
+  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `user_groups_permissions`
