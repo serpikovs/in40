@@ -6,7 +6,7 @@
         include_once("/db_scripts/select.php");
         include_once("/db_scripts/insert.php");
         
-        define("FOO",     "something");
+        define("FOO", "something");
         
         //is_correct_pwd("ed2321131826ef081e2514ffe4a48152");
         //if (is_unique_login("11111")==false)
