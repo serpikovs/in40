@@ -6,7 +6,7 @@
  */
 
 // добавляем шаблонизатор    
-include_once 'templates/core.php';
+include_once 'themes/core.php';
 
 include_once 'scripts/stopwatch.php';
 
