@@ -1,31 +1,53 @@
 <?php
 /*
  * Проект: Katrin
- * Шаблонизатор
+ * Шаблонизатор (сборка 2)
  */
 
-function tpl_load($current_tpl, $vars)
+class TemplateLoader
 {
-    /* 
-     * получаем имя текущей темы.
-     * потом это будет в настройках
+    public $full_tpls_path;
+    private $_vars = array();
+    
+    /**
+     *
+     * @param type $current_theme название текущей темы
      */
-    global $tpl_name;
+    public function __construct($current_theme = 'default') 
+    {
+	$this->full_tpls_path = 'themes/'.$current_theme;
+    }
     
-    /* 
-     * получаем полный путь до темы
-     * пока так
+    public function __get($name)
+    {
+	if (isset($this->_vars[$name])) 
+	    return $this->_vars[$name];
+	return '';
+    }
+
+    /**
+     * Заполняет один шаблон
+     * @param string $current_tpl требуемый для заполнения шаблон
+     * @param array $vars ассоциативный массив переменных
+     * @return string Заполненный шаблон 
      */
-    $full_tpl_path = 'themes/'.$tpl_name;
-    
-    // проверяем на наличие шаблона:
-    if (!file_exists($full_tpl_path.'/'.$current_tpl)) 
-	    die('Шаблона '.$full_tpl_path.'/'.$current_tpl.' не существует!');
-    
-    // загружаем шаблон
-    ob_start();
-    include($full_tpl_path."/".$current_tpl);
-    return ob_get_clean();
+    public function Load($current_tpl, $vars) //TODO возможны значения по умолчанию
+    {	
+	// добавляем расширение, если нет
+	if (preg_match('/.tpl$/', $current_tpl) == 0)
+	    $current_tpl.='.tpl';
+	
+	$this->_vars = $vars;
+	
+	// проверяем на наличие шаблона:
+	if (!file_exists($this->full_tpls_path.'/'.$current_tpl)) 
+	    die('Шаблона '.$this->full_tpls_path.'/'.$current_tpl.' не существует!');
+
+	// загружаем шаблон
+	ob_start();
+	include($this->full_tpls_path."/".$current_tpl);
+	return ob_get_clean();
+    }
 }
 
 ?>

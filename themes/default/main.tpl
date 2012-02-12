@@ -1,6 +1,6 @@
 ﻿<html>
     <head>
-	<link rel="stylesheet" href="<?=$full_tpl_path?>/style.css" type="text/css"/>
+	<link rel="stylesheet" href="<?=$this->full_tpls_path?>/style.css" type="text/css"/>
 	<script type="text/javascript" src="main.js"></script>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
@@ -15,7 +15,7 @@
 	    <div class="menu-area">
 		<div class="wrapper">
 		    <ul>
-			<?=$vars['menu']?>
+			<?=$this->menu?>
 		    </ul>
 		</div>
 	    </div>
@@ -62,6 +62,12 @@
 				    <li class="login-item">
 					<a href="#">Войти</a>
 				    </li>
+				    <li class="login-item">
+					|
+				    </li>
+				    <li class="login-item">
+					<a href="#">Регистрация</a>
+				    </li>
 				</ul>
 			    </td>
 			</tr>
@@ -70,7 +76,7 @@
 	    </div>
 	    <div id="content-area">
 		<div class="wrapper">
-		    <ul class="messages">
+		    <ul class="content messages">
 			<li>
 			    <div class="msg-row">
 				<div class="user-photo"></div>
