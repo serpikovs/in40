@@ -5,11 +5,12 @@
 
 function is_correct_login($login)
 {
-    include '/constants.php';
+    include_once '/scripts/correct_strings.php';
+    include_once("scripts/db/get_settings.php");
     
     //длина логина
     //settype($a, "string");
-    if (strlen($login)<$min_login_length || strlen($login)>$max_login_length)
+    if (strlen($login)<get_settings("min_login_length") || strlen($login)>get_settings("max_login_length"))
     {
         //echo "Логин должен быть 5-20 символов";
         return false;

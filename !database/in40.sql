@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 10 2012 г., 19:22
+-- Время создания: Фев 12 2012 г., 19:06
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -168,12 +168,12 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `body` text NOT NULL,
   `is_first` tinyint(1) NOT NULL,
   `date` datetime NOT NULL,
-  `topic_id` int(11) NOT NULL,
+  `theme_id` int(11) NOT NULL,
   `voite_y` int(11) NOT NULL,
   `voite_n` int(11) NOT NULL,
   `header` varchar(255) NOT NULL,
-  UNIQUE KEY `id` (`id`,`topic_id`),
-  KEY `theme_id` (`topic_id`)
+  UNIQUE KEY `id` (`id`,`theme_id`),
+  KEY `theme_id` (`theme_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -194,10 +194,30 @@ CREATE TABLE IF NOT EXISTS `private_messages` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `topics`
+-- Структура таблицы `settings`
 --
 
-CREATE TABLE IF NOT EXISTS `topics` (
+CREATE TABLE IF NOT EXISTS `settings` (
+  `setting` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL,
+  KEY `setting` (`setting`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `settings`
+--
+
+INSERT INTO `settings` (`setting`, `value`) VALUES
+('min_login_length', '5'),
+('max_login_length', '20');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `themes`
+--
+
+CREATE TABLE IF NOT EXISTS `themes` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -234,34 +254,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` text NOT NULL,
   `password` varchar(32) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `family_name`, `sex`, `country`, `city`, `avatar`, `mobile`, `icq`, `vk`, `facebook`, `about`, `registration_date`, `email`, `password`) VALUES
-(1, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:11', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(2, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:29', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(3, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:30', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(4, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:39', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(5, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:40', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(8, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:41', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(9, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:41', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(10, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:41', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(11, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:41', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(12, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:42', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(13, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:29:52', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(14, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 16:30:51', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(15, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:14:58', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(16, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:15:32', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(17, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:15:43', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(18, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:16:34', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(19, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:16:43', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(20, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:17:32', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(21, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:17:42', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(22, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:17:58', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(23, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-10 21:18:38', 'blaczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152');
+(1, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:28:22', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
+(2, '111111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:34:00', 'blackan1dwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
 
 -- --------------------------------------------------------
 
@@ -323,13 +324,13 @@ ALTER TABLE `poll_variants`
 -- Ограничения внешнего ключа таблицы `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `topics`
+-- Ограничения внешнего ключа таблицы `themes`
 --
-ALTER TABLE `topics`
-  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `themes`
+  ADD CONSTRAINT `themes_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `user_groups_permissions`
