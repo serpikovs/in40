@@ -1,3 +1,3 @@
 			<li class="menu-item">
-			    <a href="<?=$vars['link']?>"><?=$vars['caption']?></a>
+			    <a href="<?=$this->link?>"><?=$this->caption?></a>
 			</li>

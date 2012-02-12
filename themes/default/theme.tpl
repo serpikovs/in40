@@ -1,6 +1,6 @@
 ﻿<html>
     <head>
-	<link rel="stylesheet" href="<?=$full_tpl_path?>/style.css" type="text/css"/>
+	<link rel="stylesheet" href="<?=$this->_full_tpl_path?>/style.css" type="text/css"/>
 	<script type="text/javascript" src="main.js"></script>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
