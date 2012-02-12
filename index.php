@@ -8,6 +8,8 @@
         
         //echo autorize("11111", "c4ca4238a0b923820dcc509a6f75849b");
         
+        
+        
         if (!empty($_POST['login']) && !empty($_POST['pwd']))
             {
                 if (autorize($_POST['login'], $_POST['pwd'])==true)
@@ -17,7 +19,15 @@
                         SetCookie("l",$_POST['login'],time()+360000000);
                         SetCookie("p",$_POST['pwd'],time()+360000000);
                     }
+                    else 
+                        {
+                         echo "не прошла авторизация";
+                        }
             }
+            else
+                {
+                echo 'ничего не пришло';
+                }
             
          if (isset($_COOKIE['l']) && isset($_COOKIE['p']))
              {
@@ -56,7 +66,6 @@
     <META HTTP-EQUIV="Refresh">
     <script src="scripts/js/md5.js"></script>
     <script>
-        onload=
         function to_md5(p_input)
             {
                 document.getElementById('pwd').value=hex_md5(p_input.value);                
