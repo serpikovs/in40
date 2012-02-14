@@ -6,46 +6,39 @@
         include_once("scripts/db/get_settings.php");
         include_once("settings/settings.php");
         
-        //echo autorize("11111", "c4ca4238a0b923820dcc509a6f75849b");
-        
-        
         
         if (!empty($_POST['login']) && !empty($_POST['pwd']))
             {
                 if (autorize($_POST['login'], $_POST['pwd'])==true)
                     {
-                        echo "вы зашли как ".$_POST['login'];
+                        echo "Вы зашли как ".$_POST['login'];
                         session_set_cookie_params(10800);
                         SetCookie("l",$_POST['login'],time()+360000000);
                         SetCookie("p",$_POST['pwd'],time()+360000000);
                     }
                     else 
-                        {
-                         echo "не прошла авторизация";
-                        }
+                    {
+                        echo "Логин не верен";
+                    }
             }
             else
-                {
-                echo 'ничего не пришло';
-                }
-            
-         if (isset($_COOKIE['l']) && isset($_COOKIE['p']))
-             {
-                if (autorize($_COOKIE['l'],$_COOKIE['p'])==true)
+            {
+                if (isset($_COOKIE['l']) && isset($_COOKIE['p']))
                     {
-                        echo "вы зашли как ".$_COOKIE['l'];
+                        if (autorize($_COOKIE['l'],$_COOKIE['p'])==true)
+                            {
+                                echo "Вы зашли как ".$_COOKIE['l'];
+                            }
                     }
-             }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            }
+            
+         
+        $arr=get_categories();   
+        for ($i=0;$i<3;$i++)
+        {
+            echo $arr[$i]['id']." ".$arr[$i]['name']." ".$arr[$i]['date']."<br>";
+            //echo $arr1[$i];
+        }
         //is_correct_pwd("ed2321131826ef081e2514ffe4a48152");
 //        if (is_unique_login("11111")==false)
 //            {
