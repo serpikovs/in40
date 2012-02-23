@@ -31,7 +31,7 @@ class TemplateLoader
      * @param array $vars ассоциативный массив переменных
      * @return string Заполненный шаблон 
      */
-    public function Load($current_tpl, $vars) //TODO возможны значения по умолчанию
+    public function Load($current_tpl, $vars=NULL) //TODO возможны значения по умолчанию
     {	
 	// добавляем расширение, если нет
 	if (preg_match('/.tpl$/', $current_tpl) == 0)

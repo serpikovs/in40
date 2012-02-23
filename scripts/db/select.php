@@ -84,6 +84,15 @@ function autorize($login,$pwd)
     return false;
 }
 
+/**
+ *возвращает массив ассоциативных массивов с ключами id, name, date. Пример использования:
+ * $arr=get_categories();   
+        for ($i=0;$i<3;$i++)
+        {
+            echo $arr[$i]['id']." ".$arr[$i]['name']." ".$arr[$i]['date']."<br>";
+        }
+ * @return type array возвращает двумерный массив в виде arr[][<id>,<name>,<date>]
+ */
 function get_categories()
 {
     include_once '/scripts/correct_strings.php';
@@ -94,13 +103,11 @@ function get_categories()
     mysql_query("SET NAMES utf8");
     $query = "SELECT id,name,date FROM categories";
     $res = mysql_query($query,$db);
-    while($row = mysql_fetch_array($res))
-    {
-        $category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
-        //$category_array[]['name']=$row[1];
-        //$category_array[]['date']=$row[2];
-    }
-    return $category_array;
+//    while($row = mysql_fetch_array($res))
+//    {
+//        $category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
+//    }
+    return $res;
     
     
 }

@@ -34,10 +34,10 @@
             
          
         $arr=get_categories();   
-        for ($i=0;$i<3;$i++)
+        while($row = mysql_fetch_assoc($arr))
         {
-            echo $arr[$i]['id']." ".$arr[$i]['name']." ".$arr[$i]['date']."<br>";
-            //echo $arr1[$i];
+            echo $row['name'].$row['id'].$row['date']."<br>";
+            //$category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
         }
         //is_correct_pwd("ed2321131826ef081e2514ffe4a48152");
 //        if (is_unique_login("11111")==false)

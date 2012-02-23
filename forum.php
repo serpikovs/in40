@@ -22,8 +22,11 @@ $page_areas = array();
 
 /* загрузка шапки */
 
-/* загрузка меню */
+$page_areas['header']=$tpl_loader->Load("header");
 
+
+/* загрузка меню */
+/*
 $page_areas['menu'] = '';
 
 // цикл
@@ -43,8 +46,10 @@ for ($i = 1; $i <= 10; $i++)
 }
 
 unset($menu_vars);
-
+*/
 /* загрузка навигации */
+
+$page_areas['submenu_area']=$tpl_loader->Load("submenu_area");
 
 /* загрузка панели авторизации */
 
@@ -53,6 +58,9 @@ unset($menu_vars);
 /* загрузка подвала */
 
 /* загрузка всей страницы */
+
+
+
 echo $tpl_loader->Load('main', $page_areas);
 
 echo $sw->End();
