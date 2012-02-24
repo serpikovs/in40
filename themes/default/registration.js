@@ -8,29 +8,35 @@
                 {
                 var a=document.getElementById('pwd_1').value;
                 var b=document.getElementById('pwd_2').value;
-                    if (a==b)
+                    if (a.length!=0)
                         {
-                            document.getElementById('correct_pwd_text').style.color="green";
-                            document.getElementById('correct_pwd_text').innerHTML=" - пароли совпали";
+                            if (a==b)
+                                {
+                                    document.getElementById('correct_pwd_text').style.color="green";
+                                    document.getElementById('correct_pwd_text').innerHTML="&nbsp - пароли совпали";
+                                }
+                                else
+                                {
+                                            document.getElementById('correct_pwd_text').style.color="red";
+                                            document.getElementById('correct_pwd_text').innerHTML="&nbsp - пароли не совпали";
+                                }
+                            }
                         }
-                        else
-                        {
-                            document.getElementById('correct_pwd_text').style.color="red";
-                            document.getElementById('correct_pwd_text').innerHTML=" - пароли не совпали";
-                        }
-                }
              function check_email()
                 {
                     var a=document.getElementById('email').value;
                     if (/^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/.test(a)==true)
                         {
                             document.getElementById('correct_email_text').style.color="green";
-                            document.getElementById('correct_email_text').innerHTML=" - email верен";
+                            document.getElementById('correct_email_text').innerHTML="&nbsp - email верен";
                         }
                         else
                         {
-                            document.getElementById('correct_email_text').style.color="red";
-                            document.getElementById('correct_email_text').innerHTML=" - email неверен";
+                            if (a.length!=0)
+                                {
+                                    document.getElementById('correct_email_text').style.color="red";
+                                    document.getElementById('correct_email_text').innerHTML="&nbsp - email неверен";
+                                }
                         }
                 }
                 
@@ -40,12 +46,15 @@
                     if (/[^а-яa-z0-9_]/i.test(a)==false && a.length>4 && a.length<21)
                         {
                             document.getElementById('correct_login_text').style.color="green";
-                            document.getElementById('correct_login_text').innerHTML=" - логин верен";
+                            document.getElementById('correct_login_text').innerHTML="&nbsp - логин верен";
                         }
                         else
                         {
-                            document.getElementById('correct_login_text').style.color="red";
-                            document.getElementById('correct_login_text').innerHTML=" - логин неверен";
+                            if (a.length!=0)
+                                {
+                                    document.getElementById('correct_login_text').style.color="red";
+                                    document.getElementById('correct_login_text').innerHTML="&nbsp - логин неверен";
+                                }
                         }
                 }
                 
@@ -65,6 +74,11 @@
                         document.getElementById('send_data').disabled="disabled";
                     }
                         
+            }
+            
+            function check_per_second()
+            {
+                setInterval("check_login();check_email();compare_pwds();", 1000)
             }
       
 

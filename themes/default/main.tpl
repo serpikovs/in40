@@ -1,7 +1,8 @@
 <html>
     <head>
 	<link rel="stylesheet" href="<?=$this->full_tpls_path?>/style.css" type="text/css"/>
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="<?=$this->full_tpls_path?>/main.js"></script>
+        <script type="text/javascript" src="<?=$this->full_tpls_path?>/registration.js"></script>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
     </head>
@@ -31,12 +32,14 @@
                     <?=$this->submenu_area?>
                 </div>
             </div>
+            
 	    <div id="content-area">                
 		<div class="wrapper">
 		   
-                 
+                 <?=$this->content?>
 		</div>
 	    </div>
+            
 	    <div class="buffer-area"></div>
 	</div>
 	<div class="bottom-part">

@@ -54,9 +54,6 @@
             </td>
         </tr>
         
-    
-    
-    
     </table>
     <input type="hidden" name="pwd" id="pwd"><br>
     <input type=submit id="send_data" style="width: 150px; height: 40px;" disabled="disabled" value="Отправить данные">

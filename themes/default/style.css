@@ -182,6 +182,28 @@ a:hover
     /*border: 1px solid red;*/
 }
 
+.reg-area 
+{
+    height: 100%;
+    font: 20px sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+.reg-header
+{
+    margin: 20px 0 20px 0;
+    background-color: #eeeeee;
+    font: 22px sans-serif;
+    line-height: 1.5;
+    color: #333;
+}
+
+.reg-input 
+{
+    font: 20px sans-serif;
+}
+
 .user-photo, .user-info-area, .msg-body
 {
     float: left;
