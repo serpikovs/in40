@@ -37,7 +37,7 @@
                Пароль:
             </td>
             <td>
-                <input type="text" name="password_1" MAXLENGTH="40" id="pwd_1" onKeyUp="compare()" class="reg-input">
+                <input type="text" name="password_1" MAXLENGTH="40" id="pwd_1" onKeyUp="compare_pwds()" class="reg-input">
             </td>
         </tr>
         

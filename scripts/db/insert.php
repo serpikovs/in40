@@ -10,9 +10,8 @@ function create_new_user($login,$email,$pwd)
     include_once '/settings/settings.php';
     include_once '/scripts/correct_strings.php';
     include_once("scripts/db/select.php");
-    
     //проверка на корректность
-    if (is_correct_login($login)==true && is_correct_email($email)==true && is_correct_pwd($pwd)==true && is_unique_email($email) && is_unique_login($login))
+    if (is_correct_login($login)==true && is_correct_email($email)==true && is_correct_pwd($pwd)==true && is_unique_email($email)==true && is_unique_login($login)==true)
     {
         $db=mysql_connect(host,user,pass);
         mysql_select_db("in40",$db);
@@ -31,6 +30,7 @@ function create_new_user($login,$email,$pwd)
         mysql_query($query,$db);// or die ("Ошибка создания");
         return true;
     }
+    
     return false;
     
     
