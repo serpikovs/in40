@@ -8,6 +8,7 @@ if (!defined('Katrin'))
     die ('Access Error');
 
 include_once 'scripts/cookies.php';
+include_once 'modules/notify.php';
 
 // GET logout
 if (isset($_GET['logout']))
@@ -28,8 +29,7 @@ if (isset($_GET['login']))
 	}
 	else 
         {
-	    /* Нотификацию */
-	    echo "Логин не верен";
+	    notify("Логин и/или пароль введен неверно!");
         }
     }
 }

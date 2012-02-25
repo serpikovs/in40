@@ -1,9 +1,21 @@
 <?php
 /*
  * Проект: Katrin
- * Шаблонизатор (сборка 2)
+ * Шаблонизатор (сборка 3)
  */
 
+if (!defined('Katrin'))
+    die ('Access Error');
+
+// Создаем объект шаблонизатора
+$current_theme = 'default';			    // TODO из настроек
+$tpl_loader = new TemplateLoader($current_theme);
+$page_areas = array();
+
+
+/**
+ * Класс-шаблонизатор 
+ */
 class TemplateLoader
 {
     public $full_tpls_path;

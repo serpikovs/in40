@@ -2,23 +2,21 @@
 Регистрация
 -->
 <?php
-        include_once 'scripts/db/insert.php';
-        
-        // добавляем шаблонизатор    
-        include_once 'themes/core.php';
-        
-        // название текущей визуальной темы 
-        $current_theme = 'default';
+        define("Katrin", 1);
 
-        // создаем шаблонизатор этой темы
-        $tpl_loader = new TemplateLoader($current_theme);
-        
-        
-        $page_areas = array();
-        
+	include_once 'scripts/db/insert.php';
+        include_once 'themes/core.php';	
+
+	include_once 'modules/notify.php';
+	include_once 'modules/menu.php';
+
         /* загрузка шапки */
         $page_areas['header']=$tpl_loader->Load("header");
         
+	$page_areas['menu'] = construct_menu();
+	
+	notify('Регистрация нового пользователя');
+	
         /*загрузка области реги*/
         $page_areas['content']=$tpl_loader->Load("registration");
         

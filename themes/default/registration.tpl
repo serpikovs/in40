@@ -1,9 +1,3 @@
-<div class="reg-header">
-    Регистрация нового пользователя
-</div>
-
-
-
 <FORM ACTION="registration.php" METHOD=post>
     <table>
         <tr>

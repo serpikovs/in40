@@ -14,6 +14,8 @@ include_once 'themes/core.php';
 
 // загружаем модули
 include_once 'modules/log_reg.php';
+include_once 'modules/notify.php';
+include_once 'modules/menu.php';
 
 // разборка get
 if (isset($_GET['page']))
@@ -28,22 +30,11 @@ else
 // выполнение задач
 
 // заполнение страницы
-$current_theme = 'default';
-$tpl_loader = new TemplateLoader($current_theme);
-$page_areas = array();
-
 /* загрузка шапки */
 $page_areas['header']=$tpl_loader->Load("header");
 
 /* загрузка меню */
-$page_areas['menu'] = '';
-$db_result = get_menu();
-
-while ($menu_vars = mysql_fetch_assoc($db_result)) 
-{
-    $page_areas['menu'] = $page_areas['menu'] . $tpl_loader->Load("menu-item", $menu_vars);
-}
-unset($menu_vars);
+$page_areas['menu'] = construct_menu();
 
 /* загрузка навигации */
 $page_areas['nav'] = '';
@@ -67,16 +58,13 @@ switch ($page)
 	break;
 }
 
-
 unset($nav_vars);
 
 /* загрузка панели авторизации */
 $page_areas['login'] = construct_log_reg();
 
+/* загрузка всего субменю */
 $page_areas['submenu_area'] = $tpl_loader->Load('submenu_area', $page_areas);
-
-/* загрузка оповещения */
-$page_areas['notify']=$tpl_loader->Load("notify", array('notify' => 'current'));
 
 /* загрузка контента */
 switch ($page) 
@@ -85,6 +73,8 @@ switch ($page)
 	$page_areas['content']=$tpl_loader->Load("admin-main");
 	break;
     case 'menu':
+	$menu['items'] = get_menu();
+	
 	$page_areas['content']=$tpl_loader->Load("admin-menu-editor");
 	break;
     default:

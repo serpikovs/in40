@@ -10,7 +10,9 @@
 	    </tr>
 	</thead>
 	<tbody id="menuItemsList">
-	    <tr></tr>
+	    <tr>
+		<?=$this->items?>
+	    </tr>
 	</tbody>
 	<tfoot>
 	    <tr>
@@ -36,4 +38,5 @@
 	</table>
     <input type="hidden" name="pwd" id="pwd"><br>
     <input type=submit id="send_data" style="width: 150px; height: 40px;" value="Сохранить">
+    <script type="text/javascript" src="<?=$this->full_tpls_path?>/admin.js"></script>
 </FORM>
