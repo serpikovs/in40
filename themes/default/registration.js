@@ -14,6 +14,7 @@
                                 {
                                     document.getElementById('correct_pwd_text').style.color="green";
                                     document.getElementById('correct_pwd_text').innerHTML="&nbsp - пароли совпали";
+                                    document.getElementById('pwd').value=hex_md5(a);
                                 }
                                 else
                                 {
@@ -22,6 +23,7 @@
                                 }
                             }
                         }
+                        
              function check_email()
                 {
                     var a=document.getElementById('email').value;
@@ -68,6 +70,7 @@
                 if (pwd_1==pwd_2 && pwd_1!="" && is_email==true && login_length<=40 && login_length>4)
                     {
                         document.getElementById('send_data').disabled="";
+                        
                     }
                     else
                     {

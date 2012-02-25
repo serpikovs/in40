@@ -22,14 +22,18 @@
         /*загрузка области реги*/
         $page_areas['content']=$tpl_loader->Load("registration");
         
-        //create_new_user("11111","blaczxc@mail.ru","ed2321131826e7081e2514ffe4a48152");
+        //create_new_user("1221211111","bl21aczxc@mail.ru","ed2321131826e7081e2514ffe4a48152");
         if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['pwd']))
         {
-           
            if (create_new_user($_POST['login'],$_POST['email'],$_POST['pwd'])==true)
                {
                     include("/themes/default/end_registration.tpl");
                }
+            else 
+                {
+                     echo "неудача реги";
+                 }
+               
         }
         else
         {
