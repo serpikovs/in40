@@ -1,36 +1,32 @@
 <html>
     
     <?php
-        include_once("scripts/db/select.php");
+	
+	define("Katrin", 1);   
+    
+	include_once("scripts/db/select.php");
         include_once("scripts/db/insert.php");
         include_once("scripts/db/get_settings.php");
         include_once("settings/settings.php");
+	include_once 'scripts/cookies.php';
         
         
         if (!empty($_POST['login']) && !empty($_POST['pwd']))
             {
                 if (autorize($_POST['login'], $_POST['pwd'])==true)
                     {
-                        echo "Вы зашли как ".$_POST['login'];
-                        session_set_cookie_params(10800);
-                        SetCookie("l",$_POST['login'],time()+360000000);
-                        SetCookie("p",$_POST['pwd'],time()+360000000);
+                        set_cookies_login_pass($_POST['login'], $_POST['pwd']);
+			echo "Вы зашли как " . get_cookies_login();
                     }
                     else 
                     {
                         echo "Логин не верен";
                     }
             }
-            else
+            elseif (autorize(get_cookies_login(), get_cookies_pass()))
             {
-                if (isset($_COOKIE['l']) && isset($_COOKIE['p']))
-                    {
-                        if (autorize($_COOKIE['l'],$_COOKIE['p'])==true)
-                            {
-                                echo "Вы зашли как ".$_COOKIE['l'];
-                            }
-                    }
-            }
+		echo "Вы зашли как " . get_cookies_login();
+	    }
             
          
         $arr=get_categories();   

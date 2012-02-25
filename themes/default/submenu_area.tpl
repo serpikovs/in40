@@ -1,29 +1,8 @@
-
         <table class="twrapper">
             <tr>
                 <td>
                     <ul>
-                        <li class="nav-item">
-                            <a href="#">Название сайта</a>
-                        </li>
-                        <li class="nav-item">
-                            <span>»</span>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Обсуждения</a>
-                        </li>
-                        <li class="nav-item">
-                            <span>»</span>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Категория</a>
-                        </li>
-                        <li class="nav-item">
-                            <span>»</span>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Тема</a>
-                        </li>
+			<?=$this->nav?>
                     </ul>
                 </td>
                 <td style="text-align: right;">
@@ -38,13 +17,13 @@
                             <input type="checkbox" title="Запомнить"/>
                         </li>
                         <li class="login-item">
-                            <a href="#">Войти</a>
+                            <a href="#" class="menu-link">Войти</a>
                         </li>
                         <li class="login-item">
                             |
                         </li>
                         <li class="login-item">
-                            <a href="#">Регистрация</a>
+                            <a href="#" class="menu-link">Регистрация</a>
                         </li>
                     </ul>
                 </td>

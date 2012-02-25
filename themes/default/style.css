@@ -16,18 +16,45 @@ html, body
     color: #333;
 }
 
-a
+.add-btn
+{
+    width: 20px;
+    height: 20px;
+}
+
+.menu-link
 {
     color: #4CA6CF;
     text-decoration: none;
     border-bottom: 1px solid #ccc;
 }
 
-a:hover
+.menu-link:hover
 {
     color: #d52;
     text-decoration: none;
     border-bottom: 1px solid #ccc;
+}
+
+.logo-link
+{
+    color: #333;
+    text-decoration: none;
+}
+
+.logo-link:hover
+{
+    text-decoration: none;
+}
+
+.notify
+{
+    margin: 20px 0 20px 0;
+    padding-left: 10px;
+    background-color: #eeeeee;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #333;
 }
 
 

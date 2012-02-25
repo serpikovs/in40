@@ -1,1 +1,1 @@
-Modern Forum Engine
+<a href="/" class="logo-link">Modern Forum Engine</a>

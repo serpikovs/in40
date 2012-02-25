@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 12 2012 г., 19:15
+-- Время создания: Фев 25 2012 г., 14:08
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -126,6 +126,28 @@ INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 ('sending_private_message', 'Отправка личных сообщений'),
 ('visible_avatar', 'Видимость аватара'),
 ('visible_city', 'Просмотр города');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `menu`
+--
+
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordering` int(11) NOT NULL,
+  `caption` text NOT NULL,
+  `link` text NOT NULL,
+  `short_url` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `menu`
+--
+
+INSERT INTO `menu` (`id`, `ordering`, `caption`, `link`, `short_url`) VALUES
+(1, 0, 'Главная', 'forum.php', 'forum');
 
 -- --------------------------------------------------------
 
@@ -254,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` text NOT NULL,
   `password` varchar(32) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -262,7 +284,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `family_name`, `sex`, `country`, `city`, `avatar`, `mobile`, `icq`, `vk`, `facebook`, `about`, `registration_date`, `email`, `password`) VALUES
 (1, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:28:22', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
-(2, '111111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:34:00', 'blackan1dwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
+(2, '111111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:34:00', 'blackan1dwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
+(6, 'dem0n13', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba');
 
 -- --------------------------------------------------------
 

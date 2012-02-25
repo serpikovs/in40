@@ -111,4 +111,21 @@ function get_categories()
     
     
 }
+
+/**
+ * Возвращает ассоциативный массив пунктов меню
+ * @return array Ассоциативный массив пунктов меню
+ */
+function get_menu()
+{
+    include_once '/settings/settings.php';
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db('in40', $db);
+    mysql_query('SET NAMES utf8');
+    $query = "SELECT caption,link 
+	FROM menu
+	ORDER BY ordering"; // TODO добавить проверку доступа
+    return mysql_query($query, $db);
+}
+
 ?>
