@@ -52,4 +52,13 @@ function get_cookies_pass()
 	return '';
 }
 
+/**
+ * Удаляет логин и пароль из куков
+ */
+function delete_cookies_login_pass()
+{
+    SetCookie('l', '');
+    SetCookie('p', '');
+}
+
 ?>

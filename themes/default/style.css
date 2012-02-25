@@ -165,7 +165,7 @@ html, body
 .nav-item
 {
     display: inline;
-    margin-right: 4px; 
+    margin-right: 1px; 
     /*line-height: 12px;*/  
     font-size: 10px;
 }
