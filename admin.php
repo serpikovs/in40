@@ -12,6 +12,9 @@ include_once 'scripts/db/insert.php';
 include_once 'scripts/cookies.php';
 include_once 'themes/core.php';
 
+// загружаем модули
+include_once 'modules/log_reg.php';
+
 // разборка get
 if (isset($_GET['page']))
 {
@@ -20,18 +23,6 @@ if (isset($_GET['page']))
 else
 {
     $page = "main";
-}
-
-if (isset($_GET['logout']))
-{
-    delete_cookies_login_pass();
-    $is_logon = false;
-}
-
-// получение пользователя
-if (autorize(get_cookies_login(), get_cookies_pass()))
-{
-    $is_logon = true;
 }
 
 // выполнение задач
@@ -80,18 +71,7 @@ switch ($page)
 unset($nav_vars);
 
 /* загрузка панели авторизации */
-$page_areas['login'] = '';
-
-if ($is_logon)
-{
-    // вывод приветствия
-    $page_areas['login'] = $tpl_loader->Load('login-hello', array('username' => get_cookies_login()));
-}
-else
-{
-    // вывод панели
-    $page_areas['login'] = $tpl_loader->Load('login-form');
-}
+$page_areas['login'] = construct_log_reg();
 
 $page_areas['submenu_area'] = $tpl_loader->Load('submenu_area', $page_areas);
 

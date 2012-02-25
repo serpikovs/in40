@@ -4,6 +4,8 @@
 	<script type="text/javascript" src="<?=$this->full_tpls_path?>/main.js"></script>
         <script type="text/javascript" src="<?=$this->full_tpls_path?>/registration.js"></script>
 	<script type="text/javascript" src="<?=$this->full_tpls_path?>/admin.js"></script>
+	<script type="text/javascript" src="scripts/js/md5.js"></script>
+	<!-- Можно сделать динамическую загрузку скриптов -->
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
     </head>

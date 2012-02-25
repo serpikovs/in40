@@ -9,9 +9,16 @@
         include_once("scripts/db/get_settings.php");
         include_once("settings/settings.php");
 	include_once 'scripts/cookies.php';
+	include_once 'themes/core.php';
         
-        
-        if (!empty($_POST['login']) && !empty($_POST['pwd']))
+	/* новый код */
+        include_once 'modules/log_reg.php';
+	$current_theme = 'default';
+	$tpl_loader = new TemplateLoader($current_theme);
+	echo construct_log_reg();
+	
+        /* старый код */
+	/*if (!empty($_POST['login']) && !empty($_POST['pwd']))
             {
                 if (autorize($_POST['login'], $_POST['pwd'])==true)
                     {
@@ -26,9 +33,11 @@
             elseif (autorize(get_cookies_login(), get_cookies_pass()))
             {
 		echo "Вы зашли как " . get_cookies_login();
-	    }
+	    }*/
             
          
+	    
+	    
         $arr=get_categories();   
         while($row = mysql_fetch_assoc($arr))
         {
@@ -50,7 +59,7 @@
         //echo create_new_user("111ds2111","blacsd1zx1c@mail.ru","ed2321131826e7081e2514ffe4a48152");
         //echo get_settings("max_login_length");   
     ?>
-    
+    <!-- старый код
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <META HTTP-EQUIV="Refresh">
     <script src="scripts/js/md5.js"></script>
@@ -69,5 +78,6 @@
     <input type=submit id="send_data"  value="Войти">
     </form>
     <a href="<?php echo site ?>registration.php">Регистрация</a><br>
-    
+    -->
+    <script type="text/javascript" src="scripts/js/md5.js"></script>
 </html>
