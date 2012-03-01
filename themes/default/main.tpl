@@ -2,10 +2,9 @@
     <head>
 	<link rel="stylesheet" href="<?=$this->full_tpls_path?>/style.css" type="text/css"/>
 	<script type="text/javascript" src="<?=$this->full_tpls_path?>/main.js"></script>
-        <script type="text/javascript" src="<?=$this->full_tpls_path?>/registration.js"></script>
-	<script type="text/javascript" src="scripts/js/md5.js"></script>
-	<script type="text/javascript" src="scripts/js/md5.js"></script>
 	<!-- Можно сделать динамическую загрузку скриптов -->
+        <script type="text/javascript" src="<?=$this->full_tpls_path?>/category.js"></script>
+        <?=$this->local_scripts?>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
     </head>

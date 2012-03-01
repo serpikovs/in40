@@ -16,7 +16,7 @@ function is_correct_login($login)
         return false;
     }
     
-    if (preg_match("/[^а-яa-z0-9_]/i", $login)) 
+    if (preg_match("/[^а-яa-z0-9_]/iu", $login)) 
                 {
                     //echo "недопустимый символ";
                     return false;

@@ -6,19 +6,20 @@
  */
 
 // добавляем шаблонизатор    
-include_once 'themes/core.php';
+define("Katrin", 1);
 
+include_once 'themes/core.php';
 include_once 'scripts/stopwatch.php';
+include_once 'modules/notify.php';
+include_once("scripts/db/select.php");
+
 $sw = new StopWatch();
 $sw->Start();
 
 // название текущей визуальной темы 
 $current_theme = 'default';
 
-// создаем шаблонизатор этой темы
-$tpl_loader = new TemplateLoader($current_theme);
 
-$page_areas = array();
 
 /* загрузка шапки */
 
@@ -55,10 +56,21 @@ $page_areas['submenu_area']=$tpl_loader->Load("submenu_area");
 
 /* загрузка контента */
 
+notify('Категории');
+
+$arr = get_categories();
+$page_areas['content']='';
+while ($row = mysql_fetch_assoc($arr)) 
+{
+    $category_vars['name']=$row['name'];
+    $category_vars['date']=$row['date'];
+    $category_vars['id']=$row['id'];
+    $page_areas['content'].=$tpl_loader->Load("category",$category_vars);
+}
+
 /* загрузка подвала */
 
 /* загрузка всей страницы */
-
 
 
 echo $tpl_loader->Load('main', $page_areas);

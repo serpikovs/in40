@@ -19,6 +19,7 @@ $page_areas = array();
 class TemplateLoader
 {
     public $full_tpls_path;
+    public $local_scripts;
     private $_vars = array();
     
     /**
@@ -28,6 +29,8 @@ class TemplateLoader
     public function __construct($current_theme = 'default') 
     {
 	$this->full_tpls_path = 'themes/'.$current_theme;
+        $this->local_scripts='';
+        
     }
     
     public function __get($name)
@@ -35,6 +38,11 @@ class TemplateLoader
 	if (isset($this->_vars[$name])) 
 	    return $this->_vars[$name];
 	return '';
+    }
+    
+    public function set_local_scripts($a)
+    {
+        $this->local_scripts=$a;
     }
 
     /**

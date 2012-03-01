@@ -10,6 +10,9 @@
 	include_once 'modules/notify.php';
 	include_once 'modules/menu.php';
 
+        $local_scripts='<script type="text/javascript" src="<?=$this->full_tpls_path?>/registration.js"></script><script type="text/javascript" src="scripts/js/md5.js"></script>';
+        $tpl_loader->set_local_scripts($local_scripts);
+
         /* загрузка шапки */
         $page_areas['header']=$tpl_loader->Load("header");
         
@@ -19,7 +22,6 @@
 	
         /*загрузка области реги*/
         $page_areas['content']=$tpl_loader->Load("registration");
-        
         //create_new_user("1221211111","bl21aczxc@mail.ru","ed2321131826e7081e2514ffe4a48152");
         if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['pwd']))
         {
