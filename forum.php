@@ -12,9 +12,13 @@ include_once 'themes/core.php';
 include_once 'scripts/stopwatch.php';
 include_once 'modules/notify.php';
 include_once("scripts/db/select.php");
+include_once 'scripts/forum_content.php';
 
 $sw = new StopWatch();
 $sw->Start();
+
+$local_theme_scripts=array("topic.js");
+$tpl_loader->set_local_theme_scripts($local_theme_scripts);
 
 // название текущей визуальной темы 
 $current_theme = 'default';
@@ -58,15 +62,8 @@ $page_areas['submenu_area']=$tpl_loader->Load("submenu_area");
 
 notify('Категории');
 
-$arr = get_categories();
-$page_areas['content']='';
-while ($row = mysql_fetch_assoc($arr)) 
-{
-    $category_vars['name']=$row['name'];
-    $category_vars['date']=$row['date'];
-    $category_vars['id']=$row['id'];
-    $page_areas['content'].=$tpl_loader->Load("category",$category_vars);
-}
+
+$page_areas['content'] =  get_forum_content($_GET);
 
 /* загрузка подвала */
 

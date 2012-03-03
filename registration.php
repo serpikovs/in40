@@ -10,8 +10,10 @@
 	include_once 'modules/notify.php';
 	include_once 'modules/menu.php';
 
-        $local_scripts='<script type="text/javascript" src="<?=$this->full_tpls_path?>/registration.js"></script><script type="text/javascript" src="scripts/js/md5.js"></script>';
+        $local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
+        $local_theme_scripts=array("registration.js");
         $tpl_loader->set_local_scripts($local_scripts);
+        $tpl_loader->set_local_theme_scripts($local_theme_scripts);
 
         /* загрузка шапки */
         $page_areas['header']=$tpl_loader->Load("header");

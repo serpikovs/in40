@@ -46,6 +46,32 @@ html, body
     margin: 0 0 0 10px;
 }
 
+
+
+.topic
+{
+    border: 1px solid lightgray;
+    margin: 0 0 2px 0;
+    font: 12px sans-serif;
+    width: 790px;
+}
+
+.topic-date
+{
+    font: 12px sans-serif;
+}
+
+.topic-id
+{
+    font: 12px sans-serif;
+}
+
+.topic-name
+{
+    font: 15px sans-serif; 
+    margin: 0 0 0 10px;
+}
+
 .menu-link
 {
     color: #4CA6CF;

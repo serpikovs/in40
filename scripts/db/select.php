@@ -117,6 +117,26 @@ function get_categories()
     
 }
 
+
+function get_themes($category_id)
+{
+    include_once '/scripts/correct_strings.php';
+    include_once '/settings/settings.php';
+    
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT id,name,date FROM topics WHERE category_id='".$category_id."'";
+    $res = mysql_query($query,$db);
+//    while($row = mysql_fetch_array($res))
+//    {
+//        $category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
+//    }
+    return $res;
+    
+    
+}
+
 /**
  * Возвращает ассоциативный массив пунктов меню
  * @return array Ассоциативный массив пунктов меню

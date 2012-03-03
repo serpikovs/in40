@@ -5,6 +5,7 @@
 	<!-- Можно сделать динамическую загрузку скриптов -->
         <script type="text/javascript" src="<?=$this->full_tpls_path?>/category.js"></script>
         <?=$this->local_scripts?>
+        <?=$this->local_theme_scripts?>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
 	<title>Новая страница</title>
     </head>

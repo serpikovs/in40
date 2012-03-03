@@ -20,6 +20,7 @@ class TemplateLoader
 {
     public $full_tpls_path;
     public $local_scripts;
+    public $local_theme_scripts;
     private $_vars = array();
     
     /**
@@ -40,9 +41,29 @@ class TemplateLoader
 	return '';
     }
     
+    /**
+     *устанавливает локальный скрипт НЕ из папки themes/<curretn theme>
+     * @param type $a абсолютный путь 
+     */
     public function set_local_scripts($a)
     {
         $this->local_scripts=$a;
+    }
+    
+    /**
+     *устанавливает локальный скрипт из папки themes/<curretn theme>
+     * @param type $a массив имен скриптов с расширениями, которые лежат в themes/<curretn theme>
+     */
+    public function set_local_theme_scripts($a)
+    {
+        global $current_theme;
+        $str='';
+        for ($i=0;$i<count($a);$i++)
+        {
+            
+            $str.='</script><script type="text/javascript" src="themes/'.$current_theme.'/'.$a[$i].'"></script>';
+        }
+        $this->local_theme_scripts=$str;
     }
 
     /**
