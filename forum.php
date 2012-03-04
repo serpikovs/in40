@@ -13,6 +13,11 @@ include_once 'scripts/stopwatch.php';
 include_once 'modules/notify.php';
 include_once("scripts/db/select.php");
 include_once 'scripts/forum_content.php';
+include_once 'scripts/cookies.php';
+
+// подключение модулей
+include_once 'modules/log_reg.php';
+include_once 'modules/bread_crumbs.php';
 
 $sw = new StopWatch();
 $sw->Start();
@@ -54,14 +59,16 @@ unset($menu_vars);
 */
 /* загрузка навигации */
 
-$page_areas['submenu_area']=$tpl_loader->Load("submenu_area");
+$nav_vars['nav']=  get_bread_crumbs($_GET);
+$nav_vars['login']=construct_log_reg();
+
+$page_areas['submenu_area']=$tpl_loader->Load("submenu_area",$nav_vars);
 
 /* загрузка панели авторизации */
 
 /* загрузка контента */
 
-notify('Категории');
-
+notify('');
 
 $page_areas['content'] =  get_forum_content($_GET);
 

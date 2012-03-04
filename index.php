@@ -8,6 +8,9 @@
  * 
  * ==================
  */
+
+//header("Location: forum.php");
+
 define("Katrin", 1);
 
 // подключение библиотек
@@ -20,6 +23,9 @@ include_once 'themes/core.php';
 
 // подключение модулей
 include_once 'modules/log_reg.php';
+
+$local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
+$tpl_loader->set_local_scripts($local_scripts);
 
 /* загрузка панели авторизации */
 $page_areas['login'] = construct_log_reg();

@@ -153,4 +153,56 @@ function get_menu()
     return mysql_query($query, $db);
 }
 
+/**
+ *Определяет, какой категории принадлежит тема
+ * @param type $topic_id номер темы
+ * @return type номер категории
+ */
+function get_owning_category_id($topic_id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT category_id FROM topics WHERE id='".$topic_id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['category_id'];
+}
+
+function get_category_name_by_id($category_id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT name FROM categories WHERE id='".$category_id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['name'];
+}
+
+function get_owning_category_name($topic_id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT category_id FROM topics WHERE id='".$topic_id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    $query = "SELECT name FROM categories WHERE id='".$row['category_id']."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['name'];
+}
+
+function get_topic_name_by_id($topic_id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT name FROM topics WHERE id='".$topic_id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['name'];
+}
+
 ?>

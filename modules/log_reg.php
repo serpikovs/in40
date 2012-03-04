@@ -20,8 +20,10 @@ if (isset($_GET['logout']))
 // GET login
 if (isset($_GET['login']))
 {
+    print_r($_POST);
     if (!empty($_POST['login']) && !empty($_POST['pwd']))
     {
+    
 	if (autorize($_POST['login'], $_POST['pwd']))
 	{
 	    set_cookies_login_pass($_POST['login'], $_POST['pwd']);
@@ -37,6 +39,7 @@ if (isset($_GET['login']))
 // проверка логина
 if (autorize(get_cookies_login(), get_cookies_pass()))
 {
+    
     $is_logon = true;
 }
 

@@ -11,8 +11,9 @@
 	include_once 'modules/menu.php';
 
         $local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
-        $local_theme_scripts=array("registration.js");
         $tpl_loader->set_local_scripts($local_scripts);
+        
+        $local_theme_scripts=array("registration.js");
         $tpl_loader->set_local_theme_scripts($local_theme_scripts);
 
         /* загрузка шапки */
