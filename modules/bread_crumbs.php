@@ -4,49 +4,85 @@
 Создает меню навигации Форум>категория>тема
  */
 
+if (!defined('Katrin'))
+    die ('Access Error');
+
+include_once 'themes/core.php';
+include_once 'scripts/db/select.php';
 
 /**
  *Возвращает заполненный шаблон хлебных крошек
  * @param type $a массив $_GET 
  */
-function get_bread_crumbs($a)
+function get_bread_crumbs()
 {
+
     global $tpl_loader;
     
-    include_once 'themes/core.php';
-    include_once 'themes/core.php';
-    include_once 'scripts/db/select.php';
+    $result = '';
     
+    // корень 
+    $bread_crumbs_vars['link'] = 'index.php';
+    $bread_crumbs_vars['caption'] = 'Название сайта';
+    $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
     
-    if (empty($_GET)==true)
+    // 1 уровень
+    $presenter = preg_replace('/(.+)\/(\w+?)(\.php.*)/', '\2', $_SERVER['REQUEST_URI']);
+    switch ($presenter) 
+    {
+	// выбор caption
+	case 'forum':
+	    $bread_crumbs_vars['caption'] = 'Форум';
+	    break;
+	case 'registration':
+	    $bread_crumbs_vars['caption'] = 'Регистрация';
+	    break;
+	case 'admin':
+	    $bread_crumbs_vars['caption'] = 'Админ-панель';
+	    break;
+	default:
+	    $bread_crumbs_vars['caption'] = '';
+	    break;
+    }
+    $bread_crumbs_vars['link'] = $presenter.'.php';
+    $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
+    
+    // если мы глубже первого уровня
+    if (!empty($_GET))
+    {
+        // вывод категории
+	if (isset($_GET['category']))
         {
-            $content=$tpl_loader->Load("bread_crumbs");
-            return $content;
+            $bread_crumbs_vars['link'] = 'forum.php?category='.$_GET['category'];
+	    $bread_crumbs_vars['caption'] = get_category_name_by_id($_GET['category']);
+            $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
-        
-     if (isset($_GET['category'])==true)
+	
+	// вывод темы
+	if (isset($_GET['topic']))
         {
-            $bread_crumbs_content['category']="<a href='";
-            $bread_crumbs_content['category'].=site."forum.php?category=".$_GET['category'];
-            $bread_crumbs_content['category'].="'>".get_category_name_by_id($_GET['category'])."</a> > ";
-            $content=$tpl_loader->Load("bread_crumbs",$bread_crumbs_content);
-            return $content;
+            $bread_crumbs_vars['link'] = 'forum.php?topic='.$_GET['topic'];
+	    $bread_crumbs_vars['caption'] = get_topic_name_by_id($_GET['topic']);
+            $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
-     if (isset($_GET['topic'])==true)
+	
+	// вывод секции в админ-панели
+	if (isset($_GET['section']))
         {
-         
-            $category_id=get_owning_category_id($_GET['topic']);
-            $category_name=get_category_name_by_id($category_id);
-            $bread_crumbs_content['category']="<a href='";
-            $bread_crumbs_content['category'].=site."forum.php?category=".$category_id;
-            $bread_crumbs_content['category'].="'>".$category_name."</a> > ";
-         
-            $bread_crumbs_content['category'].="<a href='";
-            $bread_crumbs_content['category'].=site."forum.php?topic=".$_GET['topic'];
-            $bread_crumbs_content['category'].="'>".get_topic_name_by_id($_GET['topic'])."</a>";
-            $content=$tpl_loader->Load("bread_crumbs",$bread_crumbs_content);
-            return $content;
+	    switch ($_GET['section']) 
+	    {
+		case 'menu':
+		    $bread_crumbs_vars['caption'] = 'Редактор меню';
+		    break;
+		default:
+		    break;
+	    }
+	    $bread_crumbs_vars['link'] = 'forum.php?section='.$_GET['section'];
+            $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
+    }
+    
+    return $result;
 }
 
 ?>

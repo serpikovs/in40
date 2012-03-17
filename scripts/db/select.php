@@ -3,6 +3,13 @@
  * 
  */
 
+
+if (!defined('Katrin'))
+    die ('Access Error');
+
+include_once '/scripts/correct_strings.php';
+include_once '/settings/settings.php';
+
 /**
  *Проверяет уникальность логина
  * @param type $login логин
@@ -10,9 +17,6 @@
  */
 function is_unique_login($login)
 {
-    include_once '/scripts/correct_strings.php';
-    include_once '/settings/settings.php';
-    
         if (is_correct_login($login)==true)
         {
             
@@ -42,9 +46,6 @@ function is_unique_login($login)
  */
 function is_unique_email($email)
 {
-    include_once '/scripts/correct_strings.php';
-    include_once '/settings/settings.php';
-    
     if (is_correct_email($email)==true)
         {
             $db = mysql_connect(host,user,pass);
@@ -70,9 +71,6 @@ function is_unique_email($email)
  */
 function autorize($login,$pwd)
 {
-    include_once '/scripts/correct_strings.php';
-    include_once '/settings/settings.php';
-    
     if (is_correct_login($login)==true && is_correct_pwd($pwd)==true)
             {
                 $db = mysql_connect(host,user,pass);
@@ -100,9 +98,6 @@ function autorize($login,$pwd)
  */
 function get_categories()
 {
-    include_once '/scripts/correct_strings.php';
-    include_once '/settings/settings.php';
-    
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
@@ -120,9 +115,6 @@ function get_categories()
 
 function get_themes($category_id)
 {
-    include_once '/scripts/correct_strings.php';
-    include_once '/settings/settings.php';
-    
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
@@ -143,7 +135,6 @@ function get_themes($category_id)
  */
 function get_menu()
 {
-    include_once '/settings/settings.php';
     $db = mysql_connect(host, user, pass);
     mysql_select_db('in40', $db);
     mysql_query('SET NAMES utf8');

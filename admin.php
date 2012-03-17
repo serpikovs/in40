@@ -15,12 +15,13 @@ include_once 'themes/core.php';
 // загружаем модули
 include_once 'modules/log_reg.php';
 include_once 'modules/notify.php';
-include_once 'modules/menu.php';
+include_once 'modules/menu.php';;
+include_once 'modules/bread_crumbs.php';
 
 // разборка get
-if (isset($_GET['page']))
+if (isset($_GET['section']))
 {
-    $page = $_GET['page'];
+    $page = $_GET['section'];
 }
 else
 {
@@ -29,42 +30,11 @@ else
 
 // выполнение задач
 
-// заполнение страницы
-/* загрузка шапки */
+/* загрузка модулей */
 $page_areas['header']=$tpl_loader->Load("header");
-
-/* загрузка меню */
 $page_areas['menu'] = construct_menu();
-
-/* загрузка навигации */
-$page_areas['nav'] = '';
-
-$nav_vars['caption'] = 'Название сайта';
-$nav_vars['link'] = 'index.php';
-$page_areas['nav'] .= $tpl_loader->Load("nav-item", $nav_vars);
-
-$nav_vars['caption'] = 'Админ-панель';
-$nav_vars['link'] = 'admin.php';
-$page_areas['nav'] .= $tpl_loader->Load("nav-item", $nav_vars);
-
-switch ($page) 
-{
-    case 'menu':
-	$nav_vars['caption'] = 'Редактор главного меню';
-	$nav_vars['link'] = 'admin.php?page=menu';
-	$page_areas['nav'] .= $tpl_loader->Load("nav-item", $nav_vars);
-	break;
-    default:
-	break;
-}
-
-unset($nav_vars);
-
-/* загрузка панели авторизации */
+$page_areas['nav'] = get_bread_crumbs();
 $page_areas['login'] = construct_log_reg();
-
-/* загрузка всего субменю */
-$page_areas['submenu_area'] = $tpl_loader->Load('submenu_area', $page_areas);
 
 /* загрузка контента */
 switch ($page) 
@@ -81,11 +51,9 @@ switch ($page)
 	break;
 }
 
-
 /* загрузка подвала */
 
 /* загрузка всей страницы */
-
 echo $tpl_loader->Load('main', $page_areas);
 
 ?>

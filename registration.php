@@ -1,50 +1,52 @@
-<!--
-Регистрация
--->
 <?php
-        define("Katrin", 1);
 
-	include_once 'scripts/db/insert.php';
-        include_once 'themes/core.php';	
+/*
+ * Проект: Katrin
+ * Регистрация
+ */
 
-	include_once 'modules/notify.php';
-	include_once 'modules/menu.php';
+define("Katrin", 1);
 
-        $local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
-        $tpl_loader->set_local_scripts($local_scripts);
-        
-        $local_theme_scripts=array("registration.js");
-        $tpl_loader->set_local_theme_scripts($local_theme_scripts);
+include_once 'scripts/db/insert.php';
+include_once 'themes/core.php';	
 
-        /* загрузка шапки */
-        $page_areas['header']=$tpl_loader->Load("header");
-        
-	$page_areas['menu'] = construct_menu();
-	
-	notify('Регистрация нового пользователя');
-	
-        /*загрузка области реги*/
-        $page_areas['content']=$tpl_loader->Load("registration");
-        //create_new_user("1221211111","bl21aczxc@mail.ru","ed2321131826e7081e2514ffe4a48152");
-        if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['pwd']))
-        {
-           if (create_new_user($_POST['login'],$_POST['email'],$_POST['pwd'])==true)
-               {
-                    include("/themes/default/end_registration.tpl");
-               }
-            else 
-                {
-                     echo "неудача реги";
-                 }
-               
-        }
-        else
-        {
-            echo $tpl_loader->Load('main', $page_areas);
-            
-            //include("/themes/default/registration.tpl");
-            //include("/themes/default/1.tpl");
-        }
+include_once 'modules/notify.php';
+include_once 'modules/menu.php';
+include_once 'modules/bread_crumbs.php';
+
+$local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
+$tpl_loader->set_local_scripts($local_scripts);
+
+$local_theme_scripts=array("registration.js");
+$tpl_loader->set_local_theme_scripts($local_theme_scripts);
+
+/* загрузка шапки */
+$page_areas['header']=$tpl_loader->Load("header");
+
+$page_areas['nav'] = get_bread_crumbs();
+$page_areas['menu'] = construct_menu();
+
+notify('Регистрация нового пользователя');
+
+/*загрузка области реги*/
+$page_areas['content']=$tpl_loader->Load("registration");
+//create_new_user("1221211111","bl21aczxc@mail.ru","ed2321131826e7081e2514ffe4a48152");
+if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['pwd']))
+{
+    if (create_new_user($_POST['login'],$_POST['email'],$_POST['pwd'])==true)
+	{
+	    include("/themes/default/end_registration.tpl");
+	}
+    else 
+	{
+		echo "неудача реги";
+	    }
+
+}
+else
+{
+    echo $tpl_loader->Load('main', $page_areas);
+}
 ?>
 
    

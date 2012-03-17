@@ -9,7 +9,7 @@
  * ==================
  */
 
-//header("Location: forum.php");
+header('Location: forum.php');
 
 define("Katrin", 1);
 
