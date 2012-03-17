@@ -8,7 +8,7 @@
         <?=$this->local_scripts?>
         <?=$this->local_theme_scripts?>
 	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-	<title>Новая страница</title>
+	<title><?=$this->page_title?></title>
     </head>
     <body>
 	<div class="top-part">

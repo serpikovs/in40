@@ -7,9 +7,10 @@
 if (!defined('Katrin'))
     die ('Access Error');
 
+include_once 'settings/settings.php';
+
 // Создаем объект шаблонизатора
-$current_theme = 'default';			    // TODO из настроек
-$tpl_loader = new TemplateLoader($current_theme);
+$tpl_loader = new TemplateLoader();
 $page_areas = array();
 
 
@@ -19,16 +20,19 @@ $page_areas = array();
 class TemplateLoader
 {
     public $full_tpls_path;
+    public $page_title = site_name;
     public $local_scripts;
     public $local_theme_scripts;
     private $_vars = array();
+    private $current_theme;
     
     /**
      *
      * @param type $current_theme название текущей темы
      */
-    public function __construct($current_theme = 'default') 
+    public function __construct($current_theme = current_theme) 
     {
+	$this->current_theme = $current_theme;
 	$this->full_tpls_path = 'themes/'.$current_theme;
         $this->local_scripts='';
         
@@ -56,12 +60,11 @@ class TemplateLoader
      */
     public function set_local_theme_scripts($a)
     {
-        global $current_theme;
         $str='';
         for ($i=0;$i<count($a);$i++)
         {
             
-            $str.='</script><script type="text/javascript" src="themes/'.$current_theme.'/'.$a[$i].'"></script>';
+            $str.='</script><script type="text/javascript" src="themes/'.$this->current_theme.'/'.$a[$i].'"></script>';
         }
         $this->local_theme_scripts=$str;
     }

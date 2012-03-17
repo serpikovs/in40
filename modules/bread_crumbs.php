@@ -14,16 +14,15 @@ include_once 'scripts/db/select.php';
  *Возвращает заполненный шаблон хлебных крошек
  * @param type $a массив $_GET 
  */
-function get_bread_crumbs()
+function construct_bread_crumbs()
 {
-
     global $tpl_loader;
     
     $result = '';
     
     // корень 
     $bread_crumbs_vars['link'] = 'index.php';
-    $bread_crumbs_vars['caption'] = 'Название сайта';
+    $bread_crumbs_vars['caption'] = site_name;
     $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
     
     // 1 уровень
@@ -33,12 +32,15 @@ function get_bread_crumbs()
 	// выбор caption
 	case 'forum':
 	    $bread_crumbs_vars['caption'] = 'Форум';
+	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
 	    break;
 	case 'registration':
 	    $bread_crumbs_vars['caption'] = 'Регистрация';
+	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
 	    break;
 	case 'admin':
 	    $bread_crumbs_vars['caption'] = 'Админ-панель';
+	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
 	    break;
 	default:
 	    $bread_crumbs_vars['caption'] = '';
@@ -55,6 +57,7 @@ function get_bread_crumbs()
         {
             $bread_crumbs_vars['link'] = 'forum.php?category='.$_GET['category'];
 	    $bread_crumbs_vars['caption'] = get_category_name_by_id($_GET['category']);
+	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
             $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
 	
@@ -63,6 +66,7 @@ function get_bread_crumbs()
         {
             $bread_crumbs_vars['link'] = 'forum.php?topic='.$_GET['topic'];
 	    $bread_crumbs_vars['caption'] = get_topic_name_by_id($_GET['topic']);
+	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
             $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
 	
@@ -73,8 +77,10 @@ function get_bread_crumbs()
 	    {
 		case 'menu':
 		    $bread_crumbs_vars['caption'] = 'Редактор меню';
+		    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
 		    break;
 		default:
+		    $bread_crumbs_vars['caption'] = '';
 		    break;
 	    }
 	    $bread_crumbs_vars['link'] = 'forum.php?section='.$_GET['section'];

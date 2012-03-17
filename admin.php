@@ -33,7 +33,7 @@ else
 /* загрузка модулей */
 $page_areas['header']=$tpl_loader->Load("header");
 $page_areas['menu'] = construct_menu();
-$page_areas['nav'] = get_bread_crumbs();
+$page_areas['nav'] = construct_bread_crumbs();
 $page_areas['login'] = construct_log_reg();
 
 /* загрузка контента */

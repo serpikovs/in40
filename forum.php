@@ -26,9 +26,9 @@ $current_theme = 'default';
 /* загрузка модулей */
 $page_areas['header'] = $tpl_loader->Load("header");
 $page_areas['menu'] = construct_menu();
-$page_areas['nav'] = get_bread_crumbs();
+$page_areas['nav'] = construct_bread_crumbs();
 $page_areas['login'] = construct_log_reg();
-$page_areas['content'] = get_forum_content($_GET);
+$page_areas['content'] = construct_forum_content();
 
 /* загрузка всей страницы */
 echo $tpl_loader->Load('main', $page_areas);
