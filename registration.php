@@ -15,15 +15,18 @@ include_once 'modules/notify.php';
 include_once 'modules/menu.php';
 include_once 'modules/bread_crumbs.php';
 
+//print_r($_POST);
 /* выполнение задач */
 if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['pwd']))
 {
+
     if (create_new_user($_POST['login'],$_POST['email'],$_POST['pwd']))
     {
 	set_cookies_login_pass($_POST['login'], $_POST['pwd']);
 	header('Location: index.php?login');    
     }
 }
+
 
 $local_scripts='</script><script type="text/javascript" src="scripts/js/md5.js"></script>';
 $tpl_loader->set_local_scripts($local_scripts);

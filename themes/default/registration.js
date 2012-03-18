@@ -82,17 +82,15 @@ function check_login()
 
             }
             
-            
-            
             if (is_exist(a,"login")=="true") // проверка есть или нет в БД
             {
                 document.getElementById('correct_login_text').style.color="red";
                 document.getElementById('correct_login_text').innerHTML="&nbsp - пользователь уже существует";
                 return false;
             }
+            
             document.getElementById('correct_login_text').style.color="green";
             document.getElementById('correct_login_text').innerHTML="&nbsp - логин верен";
-            is_login_exist(a);
             return true;
         }
         return false;
@@ -102,11 +100,16 @@ function check_login()
 
 function is_all_correct()
 {
-    if ((compare_pwds() & check_email() & check_login()) )
+    if ((compare_pwds() && check_email() && check_login()) )
     {
 	document.getElementById('pwd').value=hex_md5(document.getElementById('pwd_1').value);
 	return true;
     }
+    else
+        {
+            document.getElementById('send_data').disabled="disabled";
+        }
+
     alert('При заполнении формы были допущены ошибки');
     return false;
 }
