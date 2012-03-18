@@ -30,7 +30,7 @@ if (empty($_GET)==true)
         
      if (isset($_GET['category'])==true)
         {
-            $arr = get_themes($_GET['category']);
+            $arr = get_topics($_GET['category']);
             $content='';
             while ($row = mysql_fetch_assoc($arr)) 
             {
@@ -38,6 +38,25 @@ if (empty($_GET)==true)
                 $topic_vars['date']=$row['date'];
                 $topic_vars['id']=$row['id'];
                 $content.=$tpl_loader->Load("topic",$topic_vars);
+            }
+            return $content;
+        }
+        
+     if (isset($_GET['topic'])==true)
+        {
+            //echo get_user_name_by_id(1);
+            $arr = get_posts($_GET['topic']);
+            $content='';
+            while ($row = mysql_fetch_assoc($arr)) 
+            {
+                $post_vars['id']=$row['id'];
+                $post_vars['date']=$row['date'];
+                $post_vars['login']=get_user_name_by_id($row['user_id']);
+                $post_vars['user_group']=get_user_group_name_by_user_id($row['user_id']);
+                $post_vars['body']=$row['body'];
+                $post_vars['voite_y']=$row['voite_y'];
+                $post_vars['voite_n']=$row['voite_n'];
+                $content.=$tpl_loader->Load("post",$post_vars);
             }
             return $content;
         }

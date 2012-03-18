@@ -112,7 +112,7 @@ function get_categories()
 }
 
 
-function get_themes($category_id)
+function get_topics($category_id)
 {
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
@@ -125,6 +125,21 @@ function get_themes($category_id)
 //    }
     return $res;
     
+    
+}
+
+function get_posts($topic_id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT id,user_id,body,voite_y,voite_n,header,date FROM posts WHERE id='".$topic_id."'";
+    $res = mysql_query($query,$db);
+//    while($row = mysql_fetch_array($res))
+//    {
+//        $category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
+//    }
+    return $res;
     
 }
 
@@ -190,6 +205,31 @@ function get_topic_name_by_id($topic_id)
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
     $query = "SELECT name FROM topics WHERE id='".$topic_id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['name'];
+}
+
+function get_user_name_by_id($id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT login FROM users WHERE id='".$id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['login'];
+}
+
+function get_user_group_name_by_user_id($id)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT user_group_id FROM users WHERE id='".$id."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    $query = "SELECT name FROM user_groups WHERE id='".$row['user_group_id']."'";
     $res = mysql_query($query,$db);
     $row = mysql_fetch_array($res);
     return $row['name'];

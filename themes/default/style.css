@@ -251,7 +251,7 @@ html, body
     top: 3px;
 }
 
-.messages li
+.post
 {
     clear: both;
     margin-top: 10px;
@@ -262,7 +262,7 @@ html, body
 
 /* сообщения */
 
-.msg-row
+.post-row
 {
     clear: both;
     /*border: 1px solid red;*/
@@ -290,7 +290,7 @@ html, body
     font: 20px sans-serif;
 }
 
-.user-photo, .user-info-area, .msg-body
+.user-photo, .user-info-area, .post-body
 {
     float: left;
     /*border: 1px solid red;*/
@@ -317,12 +317,12 @@ html, body
     font-weight: bold;
 }
 
-.user-group, .msg-date
+.user-group, .post-date
 {
     font-size: smaller;
 }
 
-.msg-body
+.post-body
 {
     width: 520px;
 }
@@ -334,7 +334,7 @@ html, body
     text-align: right;
 }
 
-.reply-minus, .reply-plus, .positive
+.reply-minus, .reply-plus, .positive, .negative
 {
     margin-left: 2px;
 }
@@ -352,6 +352,12 @@ html, body
 .positive
 {
     color: #393;
+    font-family: Georgia;
+}
+
+.negative
+{
+    color: #e55;
     font-family: Georgia;
 }
 

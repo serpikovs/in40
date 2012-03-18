@@ -120,7 +120,6 @@ function check_per_second()
                 
             }
             
-            
 
 function getAjax()
 	{
