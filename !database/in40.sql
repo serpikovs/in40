@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 25 2012 г., 14:08
+-- Время создания: Мар 18 2012 г., 11:00
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -250,6 +250,15 @@ CREATE TABLE IF NOT EXISTS `topics` (
   KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `topics`
+--
+
+INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_news_theme`) VALUES
+(0, 'Тема 1 категории 1', 1, 1, '2012-03-06 00:00:00', 0),
+(1, 'Тема 2 категории 1', 1, 1, '2012-03-21 00:00:00', 0),
+(3, 'Тема 1 категории 2', 1, 2, '2012-03-06 00:00:00', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -276,16 +285,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` text NOT NULL,
   `password` varchar(32) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `family_name`, `sex`, `country`, `city`, `avatar`, `mobile`, `icq`, `vk`, `facebook`, `about`, `registration_date`, `email`, `password`) VALUES
-(1, '11111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:28:22', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
-(2, '111111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 19:34:00', 'blackan1dwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
-(6, 'dem0n13', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba');
+(6, 'dem0n13', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
+(10, '1221211111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:00:22', 'bl21aczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
+(11, 'sfsdfsdf', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:01:49', 'blddackandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
+(12, 'чонгч', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:13:49', 'blddawckandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
+(13, 'чонгча', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:07', 'blddaw3ckandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
+(14, 'чонгчак', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:33', 'blddaw3cka4ndwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
+(15, 'чонгчаке', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:52', 'bldda4w3cka4ndwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
+(16, 'серджио', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-04 17:21:40', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
 
 -- --------------------------------------------------------
 
