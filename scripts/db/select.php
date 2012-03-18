@@ -4,8 +4,7 @@
  */
 
 
-if (!defined('Katrin'))
-    die ('Access Error');
+
 
 include_once '/scripts/correct_strings.php';
 include_once '/settings/settings.php';
