@@ -64,10 +64,16 @@ function construct_bread_crumbs()
 	// вывод темы
 	if (isset($_GET['topic']))
         {
+            
+            
+          $bread_crumbs_vars['link'] = "forum.php?category=".get_owning_category_id($_GET['topic']);
+	  $bread_crumbs_vars['caption'] = get_owning_category_name($_GET['topic']);
+          $result.= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
+            
             $bread_crumbs_vars['link'] = 'forum.php?topic='.$_GET['topic'];
 	    $bread_crumbs_vars['caption'] = get_topic_name_by_id($_GET['topic']);
 	    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
-            $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
+            $result.= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
 	
 	// вывод секции в админ-панели
