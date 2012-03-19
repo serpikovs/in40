@@ -133,7 +133,7 @@ function get_posts($topic_id)
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
-    $query = "SELECT id,user_id,body,voite_y,voite_n,header,date FROM posts WHERE id='".$topic_id."'";
+    $query = "SELECT id,user_id,body,voite_y,voite_n,header,date FROM posts WHERE topic_id='".$topic_id."'";
     $res = mysql_query($query,$db);
 //    while($row = mysql_fetch_array($res))
 //    {

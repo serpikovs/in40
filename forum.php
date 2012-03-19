@@ -17,8 +17,9 @@ include_once 'modules/log_reg.php';
 include_once 'modules/bread_crumbs.php';
 include_once 'modules/menu.php';
 
-$local_theme_scripts=array("topic.js");
-$tpl_loader->set_local_theme_scripts($local_theme_scripts);
+//$local_theme_scripts=array("topic.js");
+//$tpl_loader->set_local_theme_scripts($local_theme_scripts);
+$tpl_loader->set_local_theme_scripts_by_get($_GET);
 
 // название текущей визуальной темы 
 $current_theme = 'default';

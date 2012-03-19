@@ -54,8 +54,17 @@ if (empty($_GET)==true)
                 $post_vars['login']=get_user_name_by_id($row['user_id']);
                 $post_vars['user_group']=get_user_group_name_by_user_id($row['user_id']);
                 $post_vars['body']=$row['body'];
-                $post_vars['voite_y']=$row['voite_y'];
-                $post_vars['voite_n']=$row['voite_n'];
+                if ($row['voite_y']!=$row['voite_n'])
+                    {
+                        if ($row['voite_y']>$row['voite_n'])
+                            {
+                                $post_vars['voite_y']=$row['voite_y'];
+                            }
+                            else
+                            {
+                                $post_vars['voite_n']=$row['voite_n'];
+                            }
+                    }
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
             return $content;

@@ -66,7 +66,29 @@ class TemplateLoader
             
             $str.='</script><script type="text/javascript" src="themes/'.$this->current_theme.'/'.$a[$i].'"></script>';
         }
-        $this->local_theme_scripts=$str;
+        $this->local_theme_scripts.=$str;
+    }
+    
+    /**
+     *Устанавливает локальные скрипты из папки themes/<curretn theme>, в зависимости от содержания страницы по массиву GET
+     * @param type $get массив $_GET 
+     */
+    public function set_local_theme_scripts_by_get($get)
+    {
+        $str='';
+        if (isset($get['topic']))
+            {
+            $str.='</script><script type="text/javascript" src="themes/'.$this->current_theme.'/post.js"></script>';
+            }
+        if (isset($get['category']))
+            {
+            $str.='</script><script type="text/javascript" src="themes/'.$this->current_theme.'/topic.js"></script>';
+            }
+        if (empty($get))
+            {
+            $str.='</script><script type="text/javascript" src="themes/'.$this->current_theme.'/category.js"></script>';
+            }
+        $this->local_theme_scripts.=$str;
     }
 
     /**
