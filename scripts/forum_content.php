@@ -8,22 +8,31 @@
 
 function construct_forum_content()
 {
-   global $tpl_loader;
-
     include_once 'themes/core.php';
-    include_once("scripts/db/select.php");
+    include_once 'scripts/db/select.php';
+    include_once 'scripts/cookies.php';
+    include_once 'modules/log_reg.php';
     
+    global $tpl_loader;
+    //global $is_logon;
 
-if (empty($_GET)==true)
+ 
+    
+    //просмотр категорий
+    if (empty($_GET)==true)
         {
             $arr = get_categories();
             $content='';
             while ($row = mysql_fetch_assoc($arr)) 
             {
-                $category_vars['name']=$row['name'];
-                $category_vars['date']=$row['date'];
-                $category_vars['id']=$row['id'];
-                $content.=$tpl_loader->Load("category",$category_vars);
+                if (is_may_to_use_permission_on_category(get_cookies_login(), $row['id'], "see_category") ||
+                    is_may_to_use_permission_on_category(get_cookies_login(), $row['id'], "category_full_access"))
+                    {
+                        $category_vars['name']=$row['name'];
+                        $category_vars['date']=$row['date'];
+                        $category_vars['id']=$row['id'];
+                        $content.=$tpl_loader->Load("category",$category_vars);
+                    }
             }
             return $content;
         }
@@ -41,7 +50,8 @@ if (empty($_GET)==true)
             }
             return $content;
         }
-        
+     
+     
      if (isset($_GET['topic'])==true)
         {
             //echo get_user_name_by_id(1);
@@ -65,11 +75,11 @@ if (empty($_GET)==true)
                                 $post_vars['voite_n']=$row['voite_n'];
                             }
                     }
+                $post_vars['user_profile']='user_info='.$row['user_id'];
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
             return $content;
         }
-        
         return "";
 }
 

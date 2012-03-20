@@ -37,7 +37,6 @@ function get_cookies_login()
     if (isset($_COOKIE['l']))
 	return $_COOKIE['l'];
     else
-	
 	return 'guest';
 }
 

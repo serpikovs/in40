@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 18 2012 г., 11:00
+-- Время создания: Мар 20 2012 г., 15:08
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -51,11 +51,11 @@ CREATE TABLE IF NOT EXISTS `ban_list` (
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `categories`
@@ -76,7 +76,9 @@ CREATE TABLE IF NOT EXISTS `categories_permissions` (
   `user_group_id` int(11) NOT NULL,
   `permission` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_group_id`,`permission`,`category_id`)
+  PRIMARY KEY (`user_group_id`,`permission`,`category_id`),
+  KEY `permission` (`permission`),
+  KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -84,10 +86,10 @@ CREATE TABLE IF NOT EXISTS `categories_permissions` (
 --
 
 INSERT INTO `categories_permissions` (`user_group_id`, `permission`, `category_id`) VALUES
-(1, 'banning', 0),
-(1, 'category_full_access', 0),
-(2, 'banning', 0),
-(2, 'category_full_access', 0);
+(0, 'category_full_access', 1),
+(0, 'category_full_access', 2),
+(3, 'see_category', 2),
+(0, 'category_full_access', 3);
 
 -- --------------------------------------------------------
 
@@ -108,22 +110,23 @@ CREATE TABLE IF NOT EXISTS `general_permissions` (
 INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 ('banning', 'Право банить'),
 ('category_full_access', 'Доступ ко всем операциям с категориями'),
-('creating_theme', 'Право создавать темы'),
-('deleting_own_theme', 'Право удалять свои темы'),
-('deleting_smbd_else_theme', 'Право удалять чужие темы'),
-('editing_name_of_own_theme', 'Право редактировать названия собственных тем'),
-('editing_name_of_smbd_else__theme', 'Право редактировать названия чужих тем'),
-('seeing_about', 'Видеть информацию пользователя'),
-('seeing_country', 'Право видет страну'),
-('seeing_email', 'Видеть электронную почту'),
-('seeing_facebook', 'Видеть учетную запись "Facebook"'),
-('seeing_full_name', 'Показ Ф.И.О.'),
-('seeing_mobile', 'Видеть мобильный телефон'),
-('seeing_registration_date', 'Видеть дату регистрации'),
-('seeing_sex', 'Право видеть пол'),
-('seeing_vk', 'Видеть учетную запись "ВКонтакте"'),
-('seeng_icq', 'Видеть ICQ'),
-('sending_private_message', 'Отправка личных сообщений'),
+('create_theme', 'Право создавать темы'),
+('delete_own_theme', 'Право удалять свои темы'),
+('delete_smbd_else_theme', 'Право удалять чужие темы'),
+('edit_name_of_own_theme', 'Право редактировать названия собственных тем'),
+('edit_name_of_smbd_else__theme', 'Право редактировать названия чужих тем'),
+('see_about', 'Видеть информацию пользователя'),
+('see_category', 'Видит ли пользователь категорию'),
+('see_country', 'Право видет страну'),
+('see_email', 'Видеть электронную почту'),
+('see_facebook', 'Видеть учетную запись "Facebook"'),
+('see_full_name', 'Показ Ф.И.О.'),
+('see_icq', 'Видеть ICQ'),
+('see_mobile', 'Видеть мобильный телефон'),
+('see_registration_date', 'Видеть дату регистрации'),
+('see_sex', 'Право видеть пол'),
+('see_vk', 'Видеть учетную запись "ВКонтакте"'),
+('send_private_message', 'Отправка личных сообщений'),
 ('visible_avatar', 'Видимость аватара'),
 ('visible_city', 'Просмотр города');
 
@@ -185,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `poll_variants` (
 --
 
 CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `body` text NOT NULL,
   `is_first` tinyint(1) NOT NULL,
@@ -196,7 +199,15 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `header` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`,`topic_id`),
   KEY `theme_id` (`topic_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES
+(0, 16, 'дна из самых примитивных по устройству и назначению систем, ABS входит в базовую комплектацию подавляющего количества современных автомобилей. Даже крайне дешевые авто имеют ABS в базе. Можно утверждать, что это одна из самых популярных "необязательных" систем. На практике же очевидно, что реальные особенности эксплуатации ABS практически малоизвестны, цели и задачи - непрозрачны для большинства автолюбителей, журналистов(!), преподавателей ВУЗ(!), которые получали базовые знания по этой теме еще до массового внедрения системы в автомобильную практику.\r\n\r\nВсе это приводит к опасной потребительской безграмотности, последствия которой зачастую ведут к прямым материальным потерям. Например, при расследовании обстоятельств ДТП.\r\n\r\nПопробуйте сформулировать в одном абзаце предельно краткую и полезную информацию про антиблокировочную систему вообще. Вам помогут вопросы для самоинтервьюирования: Когда? Зачем? Преимущества? Недостатки? Особенности? Надежность? Каждое лишнее, маловажное, или сверхспецифическое знание и слово - в минус. Самое интересное - не пользоваться внешними источниками. Базовая цель информирования: "повышение эрудиции вашего коллеги с хорошей восприимчивостью к информации, но неспециалиста в этой области". Лучшее эссе будет опубликовано.\r\n\r\nКамменты скриним. Результаты через пару дней. Успехов)', 0, '2012-03-08 00:00:00', 0, 15, 14, ''),
+(1, 16, 'Никакой официальной информации о техническом наполнении Hyundai Santa Fe на данный момент нет. Скорее всего, третье поколение кроссовера получит несколько бензиновых двигателей, в том числе 200-сильный 2,4-литровый, более мощную турбированную «четверку» объемом 2 литра и венчающий модельный ряд 3,5-литровый V6. Не обойдется и без пары дизельных агрегатов. Их объем предположительно составит от 2 до 3 литров. Наверняка Hyundai Santa Fe будет обладать стандартным передним приводом и опциальным подключаемым полным. Новый автомобиль не только станет полноценным продолжением семейства Santa Fe, за счет слегка увеличившихся размеров он, скорее всего, заменит и устаревающий Hyundai ix55, известный на ряде рынков под именем Hyundai Veracruz. Если такая гипотеза окажется верной, это будет один из тех редких случаев, когда корейцы не стремительно наращивают аналогичные предложения, а оптимизируют модельный ряд.\r\n\r\nОфициальный дебют Hyundai Santa Fe состоится на Международном автосалоне в Нью-Йорке, который пройдет в апреле.', 0, '2012-03-22 00:00:00', 0, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -285,21 +296,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` text NOT NULL,
   `password` varchar(32) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `family_name`, `sex`, `country`, `city`, `avatar`, `mobile`, `icq`, `vk`, `facebook`, `about`, `registration_date`, `email`, `password`) VALUES
-(6, 'dem0n13', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
-(10, '1221211111', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:00:22', 'bl21aczxc@mail.ru', 'ed2321131826e7081e2514ffe4a48152'),
-(11, 'sfsdfsdf', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:01:49', 'blddackandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
-(12, 'чонгч', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:13:49', 'blddawckandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
-(13, 'чонгча', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:07', 'blddaw3ckandwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
-(14, 'чонгчак', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:33', 'blddaw3cka4ndwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
-(15, 'чонгчаке', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-01 22:14:52', 'bldda4w3cka4ndwhite_91@mail.ru', '8277e0910d750195b448797616e091ad'),
-(16, 'серджио', 3, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-04 17:21:40', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
+(1, 'guest', 3, 'Гость', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '', ''),
+(6, 'dem0n13', 0, '', '', '', '', '', '', '', '', '', '', '', '', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
+(16, 'серджио', 0, '', '', '', '', '', '', '', '', '', '', '', '', '2012-03-04 17:21:40', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b');
 
 -- --------------------------------------------------------
 
@@ -320,7 +326,8 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
 INSERT INTO `user_groups` (`name`, `id`) VALUES
 ('Администратор', 0),
 ('Модератор', 1),
-('Пользователь', 2);
+('Пользователь', 2),
+('Гость', 3);
 
 -- --------------------------------------------------------
 
@@ -331,9 +338,16 @@ INSERT INTO `user_groups` (`name`, `id`) VALUES
 CREATE TABLE IF NOT EXISTS `user_groups_permissions` (
   `user_group_id` int(11) NOT NULL,
   `permission` varchar(255) NOT NULL,
-  `value` tinyint(1) NOT NULL,
-  UNIQUE KEY `group_id` (`user_group_id`,`permission`)
+  UNIQUE KEY `group_id` (`user_group_id`,`permission`),
+  KEY `permission` (`permission`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `user_groups_permissions`
+--
+
+INSERT INTO `user_groups_permissions` (`user_group_id`, `permission`) VALUES
+(0, 'category_full_access');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -344,6 +358,14 @@ CREATE TABLE IF NOT EXISTS `user_groups_permissions` (
 --
 ALTER TABLE `ban_list`
   ADD CONSTRAINT `ban_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `categories_permissions`
+--
+ALTER TABLE `categories_permissions`
+  ADD CONSTRAINT `categories_permissions_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `categories_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
+  ADD CONSTRAINT `categories_permissions_ibfk_2` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`);
 
 --
 -- Ограничения внешнего ключа таблицы `poll_head`
@@ -373,7 +395,8 @@ ALTER TABLE `topics`
 -- Ограничения внешнего ключа таблицы `user_groups_permissions`
 --
 ALTER TABLE `user_groups_permissions`
-  ADD CONSTRAINT `user_groups_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_groups_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_groups_permissions_ibfk_2` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

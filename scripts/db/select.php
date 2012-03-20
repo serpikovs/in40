@@ -174,6 +174,11 @@ function get_owning_category_id($topic_id)
     return $row['category_id'];
 }
 
+/**
+ *Получает название категории по ее id
+ * @param type $category_id
+ * @return string название категории 
+ */
 function get_category_name_by_id($category_id)
 {
     $db = mysql_connect(host,user,pass);
@@ -185,6 +190,11 @@ function get_category_name_by_id($category_id)
     return $row['name'];
 }
 
+/**
+ *Получаем название категории, которая содержит данный топик
+ * @param type $topic_id d топика
+ * @return string название категории 
+ */
 function get_owning_category_name($topic_id)
 {
     $db = mysql_connect(host,user,pass);
@@ -199,6 +209,11 @@ function get_owning_category_name($topic_id)
     return $row['name'];
 }
 
+/**
+ *Получает название топика по его id
+ * @param type $topic_id
+ * @return type название
+ */
 function get_topic_name_by_id($topic_id)
 {
     $db = mysql_connect(host,user,pass);
@@ -210,6 +225,11 @@ function get_topic_name_by_id($topic_id)
     return $row['name'];
 }
 
+/**
+ *получаем логин юзера по его id
+ * @param type $id
+ * @return type 
+ */
 function get_user_name_by_id($id)
 {
     $db = mysql_connect(host,user,pass);
@@ -221,6 +241,12 @@ function get_user_name_by_id($id)
     return $row['login'];
 }
 
+/**
+ *получаем название категории группы пользователей
+ * в которой сотоит данный пользователь
+ * @param type $id id пользователя
+ * @return type 
+ */
 function get_user_group_name_by_user_id($id)
 {
     $db = mysql_connect(host,user,pass);
@@ -235,4 +261,70 @@ function get_user_group_name_by_user_id($id)
     return $row['name'];
 }
 
+
+function get_user_group_id_by_login($login)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT user_group_id FROM users WHERE login='".$login."'";
+    $res = mysql_query($query,$db);
+    if (mysql_num_rows($res)==0)
+        {
+            return -1; //пользователя нет
+        }
+    $row = mysql_fetch_array($res);
+    return $row['user_group_id'];
+}
+
+/**
+ *Есть ли право у пользователя на привилегию
+ * @param type $login
+ * @param type $permission
+ * @return boolean 
+ */
+function is_may_to_use_permission($login,$permission)
+{
+    $user_group_id=get_user_group_id_by_login($login);  //получаем группу, в которой состоит пользователь
+    
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT * FROM user_groups_permissions WHERE permission='".$permission."' AND user_group_id='".$user_group_id."'";
+    $res = mysql_query($query,$db);
+    if (mysql_num_rows($res)==0)
+        {
+            return false; 
+        }
+        else
+        {
+            return true;
+        }
+}
+
+/**
+ *Есть ли у пользователя право на привилегию по отношению к категории
+ * @param type $login
+ * @param type $category_id
+ * @param type $permission
+ * @return boolean 
+ */
+function is_may_to_use_permission_on_category($login,$category_id,$permission)
+{
+    $user_group_id=get_user_group_id_by_login($login);//получаем группу, в которой состоит пользователь
+    
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT * FROM categories_permissions WHERE permission='".$permission."' AND user_group_id='".$user_group_id."' AND category_id='".$category_id."'";
+    $res = mysql_query($query,$db);
+    if (mysql_num_rows($res)==0)
+        {
+            return false; 
+        }
+        else
+        {
+            return true;
+        }
+}
 ?>

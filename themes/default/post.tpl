@@ -2,7 +2,7 @@
     <div class="post-row">
         <div class="user-photo"></div>
         <div class="user-info-area">
-            <a class="user-nickname" href="#"><?=$this->login?></a>
+            <a class="user-nickname" href="<?=$this->user_profile?>"><?=$this->login?></a>
             <br>
             <span class="user-group"><?=$this->user_group?></span>
             <br>
