@@ -54,7 +54,7 @@ function construct_forum_content()
      
      if (isset($_GET['topic'])==true)
         {
-            //echo get_user_name_by_id(1);
+            //выдача всех постов
             $arr = get_posts($_GET['topic']);
             $content='';
             while ($row = mysql_fetch_assoc($arr)) 
@@ -78,6 +78,9 @@ function construct_forum_content()
                 $post_vars['user_profile']='user_info='.$row['user_id'];
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
+            
+            //выдача формы ответа
+            $content.=$tpl_loader->Load("reply_to_post");
             return $content;
         }
         return "";

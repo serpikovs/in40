@@ -233,12 +233,12 @@ a:hover
     text-align: right;
 }
 
-.reply-minus, .reply-plus, .positive
+.voite-minus, .voite-plus, .positive
 {
     margin-left: 2px;
 }
 
-.reply-minus, .reply-plus
+.voite-minus, .voite-plus
 {
     font-family: monospace;
     border-width: 1px;
@@ -254,13 +254,13 @@ a:hover
     font-family: Georgia;
 }
 
-.reply-plus
+.voite-plus
 {
     color: #393;
     border-color: #393;
 }
 
-.reply-minus
+.voite-minus
 {
     color: #e55;
     border-color: #e55;

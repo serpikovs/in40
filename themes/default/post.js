@@ -1,3 +1,5 @@
+window.onload=function(){document.getElementById("reply_to_post").style.display = "none"}
+
 function voite(post_id,value)
 {
     ajax=getAjax();
@@ -62,4 +64,16 @@ else {
    return null;
   }
 }
+
+function flip_reply()
+    {
+        if (document.getElementById("reply_to_post").style.display == "none")
+            {
+                document.getElementById("reply_to_post").style.display = ""
+            }
+            else
+            {
+                document.getElementById("reply_to_post").style.display = "none";
+            }
+    }
 

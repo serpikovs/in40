@@ -99,8 +99,8 @@
 			    <div class="msg-row">
 				<div class="reply-area">
 				    <span class="positive">+13</span>
-				    <span class="reply-plus">+</span>
-				    <span class="reply-minus">&ndash;</span>
+				    <span class="voite-plus">+</span>
+				    <span class="voite-minus">&ndash;</span>
 				    <a class="reply-ans" href="#">Ответить</a>
 				</div>
 			    </div>
@@ -132,8 +132,8 @@
 			    <div class="msg-row">
 				<div class="reply-area">
 				    <span class="positive">+13</span>
-				    <span class="reply-plus">+</span>
-				    <span class="reply-minus">&ndash;</span>
+				    <span class="voite-plus">+</span>
+				    <span class="voite-minus">&ndash;</span>
 				    <a class="reply-ans" href="#">Ответить</a>
 				</div>
 			    </div>
