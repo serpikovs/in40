@@ -14,11 +14,12 @@
     </div>
     <div class="post-row">
         <div class="reply-area">
+            <!--
             <span class="positive" id="positive_<?=$this->id?>"><?=$this->voite_y?></span>
             <span class="negative" id="negative_<?=$this->id?>"><?=$this->voite_n?></span>
             <span class="voite-plus"  onclick="voite(<?=$this->id?>,'up')" >+</span >
             <span class="voite-minus" onclick="voite(<?=$this->id?>,'down')">-</span >
-            <a class="reply-ans" href="#" onclick='flip_reply()'>Ответить</a>
+            -->
         </div>
     </div>
 </div>

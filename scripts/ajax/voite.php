@@ -3,7 +3,7 @@ $db = mysql_connect("localhost","root","");
 mysql_select_db("in40",$db);
 mysql_query("SET NAMES utf8");
 $p_id=$_POST['post_id'];
-//print_r($_POST);
+print_r($_POST);
 if ($_POST['value']=="up")
         {
             $query = "UPDATE posts SET voite_y=voite_y+1 WHERE id='.$p_id.'";

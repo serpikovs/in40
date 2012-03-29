@@ -3,13 +3,13 @@
  * В данном файле опитываются ТОЛЬКО функции добавления данных к базе
  */
 
-
+include_once '/settings/settings.php';
+include_once '/scripts/correct_strings.php';
+include_once("scripts/db/select.php");
 
 function create_new_user($login,$email,$pwd)
 {
-    include_once '/settings/settings.php';
-    include_once '/scripts/correct_strings.php';
-    include_once("scripts/db/select.php");
+    
     //проверка на корректность
     if (is_correct_login($login)==true && is_correct_email($email)==true && is_correct_pwd($pwd)==true && is_unique_email($email)==true && is_unique_login($login)==true)
     {
@@ -34,5 +34,15 @@ function create_new_user($login,$email,$pwd)
     return false;
     
     
+}
+
+function post_message($user_id,$topic_id,$body)
+{
+    $db=mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query ="INSERT INTO `posts`  (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES ('LAST_INSERT_ID()','".$user_id."', '".$body."', '0', NOW(), '".$topic_id."', '0', '0', '')";
+    mysql_query($query,$db) or die ("Ошибка записи");
+    return true;
 }
 ?>

@@ -75,12 +75,18 @@ function construct_forum_content()
                                 $post_vars['voite_n']=$row['voite_n'];
                             }
                     }
+                if ($row['voite_y']==$row['voite_n'])
+                    {
+                        $post_vars['voite_y']='';
+                        $post_vars['voite_n']='';
+                    }
                 $post_vars['user_profile']='user_info='.$row['user_id'];
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
             
             //выдача формы ответа
-            $content.=$tpl_loader->Load("reply_to_post");
+            $reply_to_post_vars['topic_id']=$_GET['topic'];
+            $content.=$tpl_loader->Load("reply_to_post",$reply_to_post_vars);
             return $content;
         }
         return "";

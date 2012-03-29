@@ -23,8 +23,9 @@ function voite(post_id,value)
             // посылаем наши данные или пустую строку (param="")
             // главное не null
             ajax.send(param);
-            //alert(ajax.responseText);
+            alert(ajax.responseText);
         }
+        //недоделано
      if (value=='up')
          {
              if (document.getElementById("positive_"+post_id).innerHTML!='')
@@ -33,7 +34,7 @@ function voite(post_id,value)
                  }
                 else
                  {
-                    document.getElementById("negative_"+post_id).innerHTML=parseInt(document.getElementById("positive_"+post_id).innerHTML)-1;
+                    document.getElementById("positive_"+post_id).innerHTML=1;
                  }
          }
      if (value=='down')

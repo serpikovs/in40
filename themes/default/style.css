@@ -375,8 +375,34 @@ html, body
 
 .reply-ans
 {
-    margin-left: 30px;
+    margin: 0 0 0 200px;
+    background-color: #fff;
+    width:100px;
+    height: 30px;
+    text-align: center;
+}
 
+.reply-ans:hover
+{
+    margin: 0 0 0 200px;
+    background-color: #fff;
+    width:100px;
+    height: 30px;
+    
+    text-align: center;
+}
+
+.reply-ans-font
+{
+    font-size: 20px;
+    
+    color: #7274e1;
+}
+
+.reply-ans-font:hover
+{
+    
+    color: #3d41df;
 }
 
 .reply_to_post
@@ -396,6 +422,7 @@ html, body
     float: left;
     /*border: 1px solid red;*/
     margin-right: 3px;
+    height: 100px;
     width: 197px;
 }
 

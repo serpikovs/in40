@@ -241,6 +241,22 @@ function get_user_name_by_id($id)
     return $row['login'];
 }
 
+
+/**
+ *получаем id юзера по его  логин
+ * @param type $login
+ * @return type 
+ */
+function get_user_id_by_login($login)
+{
+    $db = mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query = "SELECT id FROM users WHERE login='".$login."'";
+    $res = mysql_query($query,$db);
+    $row = mysql_fetch_array($res);
+    return $row['id'];
+}
 /**
  *получаем название категории группы пользователей
  * в которой сотоит данный пользователь
@@ -327,4 +343,6 @@ function is_may_to_use_permission_on_category($login,$category_id,$permission)
             return true;
         }
 }
+
+
 ?>
