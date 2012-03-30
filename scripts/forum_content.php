@@ -80,7 +80,7 @@ function construct_forum_content()
                         $post_vars['voite_y']='';
                         $post_vars['voite_n']='';
                     }
-                $post_vars['user_profile']='user_info='.$row['user_id'];
+                $post_vars['user_profile']='user_info.php?id='.$row['user_id'];
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
             

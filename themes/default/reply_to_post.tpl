@@ -1,8 +1,9 @@
 <div class="reply-ans">
-    <a  class="reply-ans-font" href="#" onclick='flip_reply()'>Ответить</a>
+    
+    <a  class="reply-ans-font" href="#reply" onclick='flip_reply()'>Ответить</a>
 </div>
 <div class="reply_to_post" id="reply_to_post">	
-<form ACTION="post_message.php" METHOD="POST" onsubmit="">
+<form ACTION="forum.php" METHOD="POST" onsubmit="">
     <input type="hidden" name="topic_id" value="<?=$this->topic_id?>">
     <div class="reply_to_post_row">
         <div class="reply_to_post_options">
@@ -19,6 +20,7 @@
     </div>
 </form>
 </div>
+<a href="reply"></a>
 
 
 

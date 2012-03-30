@@ -449,3 +449,19 @@ html, body
     height: 30px;
 }
 
+.user_info
+{
+    clear: both;
+    margin-top: 10px;
+    padding-bottom: 5px;
+}
+
+.user_info-row
+{
+    clear: both;
+}
+
+.user_info-parameters
+{
+    float: left;
+}

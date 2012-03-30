@@ -344,5 +344,12 @@ function is_may_to_use_permission_on_category($login,$category_id,$permission)
         }
 }
 
-
+function get_all_user_information($id)
+    {
+        $db = mysql_connect(host,user,pass);
+        mysql_select_db("in40",$db);
+        mysql_query("SET NAMES utf8");
+        $query = "SELECT * FROM users WHERE id='".$id."'";
+        return mysql_query($query,$db);
+    }
 ?>
