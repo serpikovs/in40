@@ -100,7 +100,7 @@ function get_categories()
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
-    $query = "SELECT id,name,date FROM categories";
+    $query = "SELECT * FROM categories ORDER BY ordering";
     $res = mysql_query($query,$db);
 //    while($row = mysql_fetch_array($res))
 //    {
@@ -117,7 +117,7 @@ function get_topics($category_id)
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
-    $query = "SELECT id,name,date FROM topics WHERE category_id='".$category_id."'";
+    $query = "SELECT * FROM topics WHERE category_id='".$category_id."' ORDER BY id";
     $res = mysql_query($query,$db);
 //    while($row = mysql_fetch_array($res))
 //    {

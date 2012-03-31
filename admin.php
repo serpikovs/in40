@@ -30,9 +30,10 @@ else
 
 // выполнение задач
 
+
+
 /* загрузка модулей */
 $page_areas['header']=$tpl_loader->Load("header");
-$page_areas['menu'] = construct_menu();
 $page_areas['nav'] = construct_bread_crumbs();
 $page_areas['login'] = construct_log_reg();
 
@@ -42,10 +43,14 @@ switch ($page)
     case 'main':
 	$page_areas['content']=$tpl_loader->Load("admin-main");
 	break;
-    case 'menu':
-	$menu['items'] = get_menu();
-	
-	$page_areas['content']=$tpl_loader->Load("admin-menu-editor");
+    case 'categories':
+	$arr = get_categories();
+	$page_areas['items'] = '';
+	while ($row = mysql_fetch_assoc($arr)) 
+	{
+	    $page_areas['items'].=$tpl_loader->Load('admin-categories-editor-item',$row);
+	}
+	$page_areas['content']=$tpl_loader->Load("admin-categories-editor", $page_areas);
 	break;
     default:
 	break;
