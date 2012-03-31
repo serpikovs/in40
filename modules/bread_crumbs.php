@@ -81,8 +81,8 @@ function construct_bread_crumbs()
         {
 	    switch ($_GET['section']) 
 	    {
-		case 'menu':
-		    $bread_crumbs_vars['caption'] = 'Редактор меню';
+		case 'categories':
+		    $bread_crumbs_vars['caption'] = 'Редактор категорий';
 		    $tpl_loader->page_title .= ' // '.$bread_crumbs_vars['caption'];
 		    break;
 		default:

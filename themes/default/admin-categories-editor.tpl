@@ -1,4 +1,4 @@
-<FORM ACTION="admin.php?section=categories&action=save" METHOD=post>
+<form action="admin.php?section=categories&action=save" method="POST" onsubmit="return Validate();">
     <table>
         <thead>
 	    <tr>
@@ -14,9 +14,23 @@
 		<?=$this->items?>
 	    </tr>
 	</tbody>
+	<tfoot>
+	    <tr class="category_row">
+		<td>
+		</td>
+		<td>
+		</td>
+		<td>
+		    <input type="button" value="Добавить новую категорию" style="width: 100%;" class="add-btn" onclick="AppendItem();"/>
+		</td>
+		<td>
+		</td>
+		<td>
+		</td>
+	    </tr>
+	</tfoot>
     </table>
-    <input type="hidden" name="pwd" id="pwd"><br>
     <input type=submit id="send_data" style="width: 150px; height: 40px;" value="Сохранить">
     <script type="text/javascript" src="<?=$this->full_tpls_path?>/admin.js"></script>
-    <script type="text/javascript">InitEditor();</script>
+    <script type="text/javascript">UpdateArray();</script>
 </FORM>
