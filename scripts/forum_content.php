@@ -46,6 +46,15 @@ function construct_forum_content()
                 $topic_vars['name']=$row['name'];
                 $topic_vars['date']=$row['date'];
                 $topic_vars['id']=$row['id'];
+                //если юзер имеет права на удаление топика
+                if (is_may_to_use_permission(get_cookies_login(),"delete_smbd_else_theme"))
+                    {
+                        $topic_vars['delete_topic_link']="forum.php?action=delete_topic&category_id=".$_GET['category'];
+                        $topic_vars['delete_topic_link'].="&topic_id=".$row['id'];
+                        $topic_vars['delete_topic_link'].="&user_id=".get_user_id_by_login(get_cookies_login());
+                        $topic_vars['delete_topic_link']="<a href='".$topic_vars['delete_topic_link']."'>удалить</a>";
+                    }
+                
                 $content.=$tpl_loader->Load("topic",$topic_vars);
             }
             return $content;
@@ -82,12 +91,11 @@ function construct_forum_content()
                     }
                 $post_vars['user_profile']='user_info.php?id='.$row['user_id'];
                 //если юзер имеет права на удаление
-                
-                if (is_may_to_use_permission(get_user_login_by_id($row['user_id']),"delete_posts"))
+                if (is_may_to_use_permission(get_cookies_login(),"delete_posts"))
                     {
                         $post_vars['delete_post_link']="forum.php?action=delete_post&post_id=".$row['id'];
                         $post_vars['delete_post_link'].="&topic_id=".$_GET['topic'];
-                        $post_vars['delete_post_link'].="&user_id=".$row['user_id'];
+                        $post_vars['delete_post_link'].="&user_id=".get_user_id_by_login(get_cookies_login());
                         $post_vars['delete_post_link']="<a href='".$post_vars['delete_post_link']."'>удалить</a>";
                     }
                 $content.=$tpl_loader->Load("post",$post_vars);

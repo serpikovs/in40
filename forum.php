@@ -28,11 +28,20 @@ if (isset($_POST['topic_id']) && isset($_POST['post_message']))
         $new_loc="forum.php?topic=".$_POST['topic_id'];
         header('Location: '.$new_loc); 
     }
-
+//удаление темы
+if (isset($_GET['action'])==true && $_GET['action']=="delete_topic")
+            {
+                if (is_may_to_use_permission(get_cookies_login(),"delete_smbd_else_theme"))
+                    {
+                        delete_topic($_GET['topic_id']);
+                        $new_loc="forum.php?category=".$_GET['category_id'];
+                        header('Location: '.$new_loc); 
+                    }
+            }
 //удаление сообщения
         if (isset($_GET['action'])==true && $_GET['action']=="delete_post")
             {
-                if (is_may_to_use_permission(get_user_login_by_id($_GET['user_id']),"delete_posts"))
+                if (is_may_to_use_permission(get_cookies_login(),"delete_posts"))
                     {
                         delete_post($_GET['post_id']);
                         $new_loc="forum.php?topic=".$_GET['topic_id'];
