@@ -21,18 +21,37 @@ include_once 'modules/bread_crumbs.php';
 include_once 'modules/menu.php';
 
 //выполнение действий
+//создание темы
+if (isset($_POST['action']) && $_POST['action']=="create_new_topic"  && isset($_POST['category_id']) && isset($_POST['post_message']) && isset($_POST['new_topic_name']) )
+    {
+         if (is_may_to_use_permission(get_cookies_login(),"create_topics"))
+             {
+                create_new_topic(get_user_id_by_login(get_cookies_login()),$_POST['category_id'],$_POST['new_topic_name'],$_POST['post_message']);
+                $new_loc="forum.php?category=".$_POST['category_id'];
+                header('Location: '.$new_loc); 
+             }
+    }
 //запись нового сообщения в бд
-if (isset($_POST['topic_id']) && isset($_POST['post_message']))
+if (isset($_POST['action']) && $_POST['action']=="post_message"  && isset($_POST['topic_id']) && isset($_POST['post_message']))
     {
         post_message(get_user_id_by_login(get_cookies_login()),$_POST['topic_id'],$_POST['post_message']);
         $new_loc="forum.php?topic=".$_POST['topic_id'];
         header('Location: '.$new_loc); 
     }
-
+//удаление темы
+if (isset($_GET['action'])==true && $_GET['action']=="delete_topic")
+            {
+                if (is_may_to_use_permission(get_cookies_login(),"delete_smbd_else_theme"))
+                    {
+                        delete_topic($_GET['topic_id']);
+                        $new_loc="forum.php?category=".$_GET['category_id'];
+                        header('Location: '.$new_loc); 
+                    }
+            }
 //удаление сообщения
         if (isset($_GET['action'])==true && $_GET['action']=="delete_post")
             {
-                if (is_may_to_use_permission(get_user_login_by_id($_GET['user_id']),"delete_posts"))
+                if (is_may_to_use_permission(get_cookies_login(),"delete_posts"))
                     {
                         delete_post($_GET['post_id']);
                         $new_loc="forum.php?topic=".$_GET['topic_id'];

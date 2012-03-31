@@ -45,4 +45,20 @@ function post_message($user_id,$topic_id,$body)
     mysql_query($query,$db) or die ("Ошибка записи");
     return true;
 }
+
+
+function create_new_topic($user_id,$category_id,$new_topic_name,$body)
+{
+    $db=mysql_connect(host,user,pass);
+    mysql_select_db("in40",$db);
+    mysql_query("SET NAMES utf8");
+    $query ="INSERT INTO `topics`  
+        (`id`, `name`, `user_id`, `category_id`, `date`, `is_news_theme`) VALUES 
+        ('LAST_INSERT_ID()','".$new_topic_name."', '".$user_id."', '".$category_id."', NOW(), '0')";
+    mysql_query($query,$db) or die ("Ошибка записи темы");
+    $query ="INSERT INTO `posts`    (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES 
+                                    ('LAST_INSERT_ID()','".$user_id."', '".$body."', '0', NOW(), (select id from topics where id=LAST_INSERT_ID()), '0', '0', '')";
+    mysql_query($query,$db) or die ("Ошибка записи поста");
+    return true;
+}
 ?>

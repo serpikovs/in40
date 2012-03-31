@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 31 2012 г., 17:15
+-- Время создания: Мар 31 2012 г., 21:11
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -110,8 +110,9 @@ CREATE TABLE IF NOT EXISTS `general_permissions` (
 INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 ('banning', 'Право банить'),
 ('category_full_access', 'Доступ ко всем операциям с категориями'),
-('create_theme', 'Право создавать темы'),
+('create_topics', 'Право создавать темы'),
 ('delete_own_theme', 'Право удалять свои темы'),
+('delete_posts', 'Право удалять посты'),
 ('delete_smbd_else_theme', 'Право удалять чужие темы'),
 ('edit_name_of_own_theme', 'Право редактировать названия собственных тем'),
 ('edit_name_of_smbd_else__theme', 'Право редактировать названия чужих тем'),
@@ -199,17 +200,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `header` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`,`topic_id`),
   KEY `theme_id` (`topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=163 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `posts`
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES
-(0, 16, 'дна из самых примитивных по устройству и назначению систем, ABS входит в базовую комплектацию подавляющего количества современных автомобилей. Даже крайне дешевые авто имеют ABS в базе. Можно утверждать, что это одна из самых популярных "необязательных" систем. На практике же очевидно, что реальные особенности эксплуатации ABS практически малоизвестны, цели и задачи - непрозрачны для большинства автолюбителей, журналистов(!), преподавателей ВУЗ(!), которые получали базовые знания по этой теме еще до массового внедрения системы в автомобильную практику.\r\n\r\nВсе это приводит к опасной потребительской безграмотности, последствия которой зачастую ведут к прямым материальным потерям. Например, при расследовании обстоятельств ДТП.\r\n\r\nПопробуйте сформулировать в одном абзаце предельно краткую и полезную информацию про антиблокировочную систему вообще. Вам помогут вопросы для самоинтервьюирования: Когда? Зачем? Преимущества? Недостатки? Особенности? Надежность? Каждое лишнее, маловажное, или сверхспецифическое знание и слово - в минус. Самое интересное - не пользоваться внешними источниками. Базовая цель информирования: "повышение эрудиции вашего коллеги с хорошей восприимчивостью к информации, но неспециалиста в этой области". Лучшее эссе будет опубликовано.\r\n\r\nКамменты скриним. Результаты через пару дней. Успехов)', 0, '2012-03-08 00:00:00', 0, 17, 18, ''),
-(1, 16, 'Никакой официальной информации о техническом наполнении Hyundai Santa Fe на данный момент нет. Скорее всего, третье поколение кроссовера получит несколько бензиновых двигателей, в том числе 200-сильный 2,4-литровый, более мощную турбированную «четверку» объемом 2 литра и венчающий модельный ряд 3,5-литровый V6. Не обойдется и без пары дизельных агрегатов. Их объем предположительно составит от 2 до 3 литров. Наверняка Hyundai Santa Fe будет обладать стандартным передним приводом и опциальным подключаемым полным. Новый автомобиль не только станет полноценным продолжением семейства Santa Fe, за счет слегка увеличившихся размеров он, скорее всего, заменит и устаревающий Hyundai ix55, известный на ряде рынков под именем Hyundai Veracruz. Если такая гипотеза окажется верной, это будет один из тех редких случаев, когда корейцы не стремительно наращивают аналогичные предложения, а оптимизируют модельный ряд.\r\n\r\nОфициальный дебют Hyundai Santa Fe состоится на Международном автосалоне в Нью-Йорке, который пройдет в апреле.', 0, '2012-03-22 00:00:00', 0, 1, 0, ''),
-(12, 6, 'Что-нибудь', 0, '2012-03-29 21:24:22', 0, 0, 0, ''),
-(162, 6, 'РПД', 0, '2012-03-30 18:47:12', 0, 0, 0, '');
+(1, 6, '1', 0, '2012-03-31 23:10:43', 1, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -253,7 +251,7 @@ INSERT INTO `settings` (`setting`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `topics` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -261,16 +259,14 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `is_news_theme` tinyint(1) NOT NULL,
   UNIQUE KEY `id` (`id`,`category_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Дамп данных таблицы `topics`
 --
 
 INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_news_theme`) VALUES
-(0, 'Тема 1 категории 1', 1, 1, '2012-03-06 00:00:00', 0),
-(1, 'Тема 2 категории 1', 1, 1, '2012-03-21 00:00:00', 0),
-(3, 'Тема 1 категории 2', 1, 2, '2012-03-06 00:00:00', 0);
+(1, '1', 6, 1, '2012-03-31 23:10:43', 0);
 
 -- --------------------------------------------------------
 
@@ -349,7 +345,10 @@ CREATE TABLE IF NOT EXISTS `user_groups_permissions` (
 --
 
 INSERT INTO `user_groups_permissions` (`user_group_id`, `permission`) VALUES
-(0, 'category_full_access');
+(0, 'category_full_access'),
+(0, 'create_topics'),
+(0, 'delete_posts'),
+(0, 'delete_smbd_else_theme');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -368,12 +367,6 @@ ALTER TABLE `categories_permissions`
   ADD CONSTRAINT `categories_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
   ADD CONSTRAINT `categories_permissions_ibfk_2` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`),
   ADD CONSTRAINT `categories_permissions_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `poll_head`
---
-ALTER TABLE `poll_head`
-  ADD CONSTRAINT `poll_head_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `poll_variants`
