@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 31 2012 г., 21:11
+-- Время создания: Апр 01 2012 г., 01:28
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 NOT NULL,
   `date` datetime NOT NULL,
+  `ordering` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=4 ;
 
@@ -61,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `date`) VALUES
-(1, 'Категория 1', '2012-01-17 00:00:00'),
-(2, 'Категория 2', '2012-01-17 00:00:00'),
-(3, 'Категория 3', '2012-01-17 00:00:00');
+INSERT INTO `categories` (`id`, `name`, `date`, `ordering`) VALUES
+(1, 'Категория 1', '2012-01-17 00:00:00', 0),
+(2, 'Категория 2', '2012-01-17 00:00:00', 1),
+(3, 'Категория 3', '2012-01-17 00:00:00', 2);
 
 -- --------------------------------------------------------
 
