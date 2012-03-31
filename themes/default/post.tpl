@@ -14,6 +14,8 @@
     </div>
     <div class="post-row">
         <div class="reply-area">
+            
+            <?=$this->delete_post_link?>
             <!--
             <span class="positive" id="positive_<?=$this->id?>"><?=$this->voite_y?></span>
             <span class="negative" id="negative_<?=$this->id?>"><?=$this->voite_n?></span>

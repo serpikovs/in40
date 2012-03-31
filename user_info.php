@@ -25,7 +25,7 @@ if (isset($_POST['save_all']))
 $page_areas['header']=$tpl_loader->Load("header");
 $page_areas['nav'] = construct_bread_crumbs();
 $page_areas['menu'] = construct_menu();
-$page_areas['content']=construct_forum_content();
+$page_areas['content']=construct_user_info_content();
 
 echo $tpl_loader->Load('main', $page_areas);
 ?>

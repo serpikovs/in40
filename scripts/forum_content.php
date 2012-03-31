@@ -61,7 +61,7 @@ function construct_forum_content()
             {
                 $post_vars['id']=$row['id'];
                 $post_vars['date']=$row['date'];
-                $post_vars['login']=get_user_name_by_id($row['user_id']);
+                $post_vars['login']=get_user_login_by_id($row['user_id']);
                 $post_vars['user_group']=get_user_group_name_by_user_id($row['user_id']);
                 $post_vars['body']=$row['body'];
                 if ($row['voite_y']!=$row['voite_n'])
@@ -81,6 +81,15 @@ function construct_forum_content()
                         $post_vars['voite_n']='';
                     }
                 $post_vars['user_profile']='user_info.php?id='.$row['user_id'];
+                //если юзер имеет права на удаление
+                
+                if (is_may_to_use_permission(get_user_login_by_id($row['user_id']),"delete_posts"))
+                    {
+                        $post_vars['delete_post_link']="forum.php?action=delete_post&post_id=".$row['id'];
+                        $post_vars['delete_post_link'].="&topic_id=".$_GET['topic'];
+                        $post_vars['delete_post_link'].="&user_id=".$row['user_id'];
+                        $post_vars['delete_post_link']="<a href='".$post_vars['delete_post_link']."'>удалить</a>";
+                    }
                 $content.=$tpl_loader->Load("post",$post_vars);
             }
             
@@ -89,6 +98,9 @@ function construct_forum_content()
             $content.=$tpl_loader->Load("reply_to_post",$reply_to_post_vars);
             return $content;
         }
+        
+        
+            
         return "";
 }
 

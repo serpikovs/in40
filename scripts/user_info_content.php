@@ -2,7 +2,7 @@
 
 include_once 'themes/core.php';
 
-function construct_forum_content()
+function construct_user_info_content()
 {
     global $tpl_loader;
     
