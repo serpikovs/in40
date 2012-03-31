@@ -465,3 +465,15 @@ html, body
 {
     float: left;
 }
+
+.user_info-parameters input[type="text"]
+{
+   font-size: 15px;
+   width: 200px;
+   margin: 7px 0 7px 0;
+}
+
+.user_info-parameters_wo_editing
+{
+   color: #4CA6CF;
+}

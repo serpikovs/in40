@@ -5,7 +5,7 @@
 
 include_once '/settings/settings.php';
 include_once '/scripts/correct_strings.php';
-include_once("scripts/db/select.php");
+include_once '/scripts/db/select.php';
 
 function create_new_user($login,$email,$pwd)
 {
