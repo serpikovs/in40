@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 31 2012 г., 19:01
+-- Время создания: Мар 31 2012 г., 21:11
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `general_permissions` (
 INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 ('banning', 'Право банить'),
 ('category_full_access', 'Доступ ко всем операциям с категориями'),
-('create_theme', 'Право создавать темы'),
+('create_topics', 'Право создавать темы'),
 ('delete_own_theme', 'Право удалять свои темы'),
 ('delete_posts', 'Право удалять посты'),
 ('delete_smbd_else_theme', 'Право удалять чужие темы'),
@@ -200,7 +200,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `header` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`,`topic_id`),
   KEY `theme_id` (`topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=167 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES
+(1, 6, '1', 0, '2012-03-31 23:10:43', 1, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -244,7 +251,7 @@ INSERT INTO `settings` (`setting`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `topics` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -252,7 +259,14 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `is_news_theme` tinyint(1) NOT NULL,
   UNIQUE KEY `id` (`id`,`category_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `topics`
+--
+
+INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_news_theme`) VALUES
+(1, '1', 6, 1, '2012-03-31 23:10:43', 0);
 
 -- --------------------------------------------------------
 
@@ -332,6 +346,7 @@ CREATE TABLE IF NOT EXISTS `user_groups_permissions` (
 
 INSERT INTO `user_groups_permissions` (`user_group_id`, `permission`) VALUES
 (0, 'category_full_access'),
+(0, 'create_topics'),
 (0, 'delete_posts'),
 (0, 'delete_smbd_else_theme');
 
@@ -352,12 +367,6 @@ ALTER TABLE `categories_permissions`
   ADD CONSTRAINT `categories_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
   ADD CONSTRAINT `categories_permissions_ibfk_2` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`),
   ADD CONSTRAINT `categories_permissions_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `poll_head`
---
-ALTER TABLE `poll_head`
-  ADD CONSTRAINT `poll_head_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `poll_variants`

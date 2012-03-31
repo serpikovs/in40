@@ -21,8 +21,18 @@ include_once 'modules/bread_crumbs.php';
 include_once 'modules/menu.php';
 
 //выполнение действий
+//создание темы
+if (isset($_POST['action']) && $_POST['action']=="create_new_topic"  && isset($_POST['category_id']) && isset($_POST['post_message']) && isset($_POST['new_topic_name']) )
+    {
+         if (is_may_to_use_permission(get_cookies_login(),"create_topics"))
+             {
+                create_new_topic(get_user_id_by_login(get_cookies_login()),$_POST['category_id'],$_POST['new_topic_name'],$_POST['post_message']);
+                $new_loc="forum.php?category=".$_POST['category_id'];
+                header('Location: '.$new_loc); 
+             }
+    }
 //запись нового сообщения в бд
-if (isset($_POST['topic_id']) && isset($_POST['post_message']))
+if (isset($_POST['action']) && $_POST['action']=="post_message"  && isset($_POST['topic_id']) && isset($_POST['post_message']))
     {
         post_message(get_user_id_by_login(get_cookies_login()),$_POST['topic_id'],$_POST['post_message']);
         $new_loc="forum.php?topic=".$_POST['topic_id'];

@@ -395,7 +395,6 @@ html, body
 .reply-ans-font
 {
     font-size: 20px;
-    
     color: #7274e1;
 }
 
@@ -482,3 +481,47 @@ html, body
 {
     
 }
+
+.create_topic_flipper
+{
+    margin: 0 0 0 200px;
+    background-color: #fff;
+    width:200px;
+    height: 30px;
+    text-align: center;
+}
+
+.create_topic_flipper-font
+{
+    font-size: 20px;
+    color: #7274e1;
+}
+
+.create_topic
+{
+    margin: 5px 0 50px 0;
+}
+
+.create_topic_row
+{
+    clear: both;
+}
+
+.create_topic_row input[type="text"]
+{
+    width: 500px;
+}
+
+.create_topic_btn
+{
+    margin: 20px 0 0 0;
+    width: 100px;
+    height: 30px;
+}
+
+.create_topic_textarea
+{
+    width: 100%;
+    float:left;
+}
+

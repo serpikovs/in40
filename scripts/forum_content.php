@@ -55,8 +55,16 @@ function construct_forum_content()
                         $topic_vars['delete_topic_link']="<a href='".$topic_vars['delete_topic_link']."'>удалить</a>";
                     }
                 
+                
                 $content.=$tpl_loader->Load("topic",$topic_vars);
             }
+            
+            if (is_may_to_use_permission(get_cookies_login(),"create_topics"))
+                    {
+                        $topic_control_area_vars['category_id']=$_GET['category'];
+                        $content.=$tpl_loader->Load("topic_control_area",$topic_control_area_vars);
+                    }
+                    
             return $content;
         }
      
