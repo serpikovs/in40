@@ -230,7 +230,7 @@ function get_topic_name_by_id($topic_id)
  * @param type $id
  * @return type 
  */
-function get_user_name_by_id($id)
+function get_user_login_by_id($id)
 {
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);

@@ -13,6 +13,7 @@ include_once 'modules/notify.php';
 include_once 'scripts/forum_content.php';
 include_once 'scripts/db/insert.php';
 include_once 'scripts/cookies.php';
+include_once 'scripts/db/delete.php';
 
 // подключение модулей
 include_once 'modules/log_reg.php';
@@ -28,6 +29,17 @@ if (isset($_POST['topic_id']) && isset($_POST['post_message']))
         header('Location: '.$new_loc); 
     }
 
+//удаление сообщения
+        if (isset($_GET['action'])==true && $_GET['action']=="delete_post")
+            {
+                if (is_may_to_use_permission(get_user_login_by_id($_GET['user_id']),"delete_posts"))
+                    {
+                        delete_post($_GET['post_id']);
+                        $new_loc="forum.php?topic=".$_GET['topic_id'];
+                        header('Location: '.$new_loc); 
+                    }
+            }
+    
 //$local_theme_scripts=array("topic.js");
 //$tpl_loader->set_local_theme_scripts($local_theme_scripts);
 $tpl_loader->set_local_theme_scripts_by_get($_GET);
