@@ -62,6 +62,27 @@ function create_new_topic($user_id,$category_id,$new_topic_name,$body)
     return true;
 }
 
-
+function recreate_categories($categories)
+{
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db("in40", $db);
+    mysql_query("SET NAMES utf8");
+    // удаление всех записей
+    $query = "DELETE FROM categories";
+    if (mysql_query($query, $db))
+	for ($i=0; $i<count($categories); $i++)
+	{
+	    // если id не задан - создаем новую категорию
+	    if ($categories[i]['id']==-1)
+		$categories[i]['id'] = 'LAST_INSERT_ID()';
+	    $query = "INSERT INTO categories (id, name, ordering) ".
+		    "VALUES ('".$categories[i]['id']."', '".$categories[i]['name']."', '".$categories[i]['ordering']."')";
+	    if (!mysql_query($query, $db))
+		return false;
+	}
+    else
+	return false;
+    return true;
+}
 
 ?>
