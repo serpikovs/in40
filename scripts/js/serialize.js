@@ -1,8 +1,5 @@
 function serialize (mixed_value) {
-    // Returns a string representation of variable (which can later be unserialized)  
-    // 
-    // version: 1109.2015
-    // discuss at: http://phpjs.org/functions/serialize
+    // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
     // +   bugfixed by: Andrej Pavlovic
@@ -43,7 +40,7 @@ function serialize (mixed_value) {
         var type = typeof inp,
             match;
         var key;
- 
+
         if (type === 'object' && !inp) {
             return 'null';
         }
@@ -68,7 +65,7 @@ function serialize (mixed_value) {
     };
     var type = _getType(mixed_value);
     var val, ktype = '';
- 
+
     switch (type) {
     case "function":
         val = "";
@@ -105,7 +102,7 @@ function serialize (mixed_value) {
                 if (ktype === "function") {
                     continue;
                 }
- 
+
                 okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key);
                 vals += this.serialize(okey) + this.serialize(mixed_value[key]);
                 count++;
