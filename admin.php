@@ -10,13 +10,13 @@ define("Katrin", 1);
 include_once 'scripts/db/select.php';
 include_once 'scripts/db/insert.php';
 include_once 'scripts/db/update.php';
+include_once 'scripts/db/delete.php';
 include_once 'scripts/cookies.php';
 include_once 'themes/core.php';
 
 // загружаем модули
 include_once 'modules/log_reg.php';
 include_once 'modules/notify.php';
-include_once 'modules/menu.php';;
 include_once 'modules/bread_crumbs.php';
 
 // разборка get (тернарными операциями)
@@ -32,13 +32,24 @@ if (($get_action  == 'save')&&($post_action  == 'save')&&($page == 'categories')
     while (isset($_POST['id_'.$i]))
     {
 	$categories[$i]['id'] = $_POST['id_'.$i];
+	$categories[$i]['name'] = $_POST['cat_'.$i];
 	$categories[$i]['ordering'] = $_POST['ordering_'.$i];
 	$i++;
     }
-    if (reordering_categories($categories))
-	notify('Изменения сохранены!');
-    else
-	notify('Сохранение завершилось неудачей!');
+    $remove_list = unserialize($_POST['remove_list']);
+    
+    // 1. Удаление
+    foreach ($remove_list as $item)
+        delete_category($item['id']);
+    
+    // 2. Обновление и создание
+    foreach ($categories as $item)
+        if ($item['id']==-1)
+            create_category ($item);
+        else
+            update_category ($item);
+    
+    notify('Изменения сохранены!');
 }
 
 

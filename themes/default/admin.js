@@ -1,15 +1,12 @@
 
 /*
  * Внутреннее правило: внутри индексация категорий идет от 0
- * при выводе на страницу индексация сохраняется для всех случаев, кроме
+ * при выводе в видимые элементы - конвертируется
  * 
- * Примечание: для каждой категории используется объект.
- * Он здесь избыточен, можно переделать в строку
  */
 
 var categories = [];
-
-var buffer ={};
+var removeList = [];
 
 if(document.getElementsByClassName == undefined) 
 { 
@@ -35,7 +32,7 @@ function AppendItem()
     
     // заполнение нового элемента и добавление в массив
     var cur = categories.length;
-    buffer = {};
+    var buffer = {};
     buffer.id = -1;
     buffer.name = '';
     categories[cur] = buffer;
@@ -89,6 +86,9 @@ function RemoveItem(str)
     // получаем id нажатой кнопки
     var ItemId = parseInt(str.replace(/remove_(.+)/,'$1'));
     
+    if (categories[ItemId].id!=-1)
+        removeList.push(categories[ItemId]);
+    
     // live huck
     var newcat = [];
     categories = newcat.concat(categories.slice(0,ItemId), categories.slice(ItemId+1,categories.length));
@@ -139,4 +139,7 @@ function Validate()
 	    return false;
 	}
     }
+    
+    // проверки пройдены, сериализация
+    document.getElementsByName('remove_list')[0].value = serialize(removeList);
 }

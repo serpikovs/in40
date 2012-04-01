@@ -35,6 +35,16 @@ function save_all_user_information($all_inf)
             email='".$all_inf['email']."'  
         WHERE id='".$id."'";
     return mysql_query($query,$db);
-   
+}
+
+function update_category($category)
+{
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db("in40", $db);
+    mysql_query("SET NAMES utf8");
+    $query = "UPDATE categories ".
+            "SET name='".$category['name']."', ordering='".$category['ordering']."' ".
+            "WHERE id='".$category['id']."'";
+    return mysql_query($query, $db);
 }
 ?>

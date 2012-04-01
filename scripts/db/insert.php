@@ -62,6 +62,14 @@ function create_new_topic($user_id,$category_id,$new_topic_name,$body)
     return true;
 }
 
-
+function create_category($category)
+{
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db("in40", $db);
+    mysql_query("SET NAMES utf8");
+    $query = "INSERT INTO categories (name, ordering) ".
+		    "VALUES ('".$category['name']."', '".$category['ordering']."')";
+    return mysql_query($query, $db);
+}
 
 ?>

@@ -89,7 +89,7 @@ function construct_bread_crumbs()
 		    $bread_crumbs_vars['caption'] = '';
 		    break;
 	    }
-	    $bread_crumbs_vars['link'] = 'forum.php?section='.$_GET['section'];
+	    $bread_crumbs_vars['link'] = 'admin.php?section='.$_GET['section'];
             $result .= $tpl_loader->Load('nav-item', $bread_crumbs_vars);
         }
     }
