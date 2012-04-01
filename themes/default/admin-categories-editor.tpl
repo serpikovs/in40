@@ -30,6 +30,7 @@
 	    </tr>
 	</tfoot>
     </table>
+    <input type="hidden" name="action" value="save"/>
     <input type=submit id="send_data" style="width: 150px; height: 40px;" value="Сохранить">
     <script type="text/javascript" src="<?=$this->full_tpls_path?>/admin.js"></script>
     <script type="text/javascript">UpdateArray();</script>

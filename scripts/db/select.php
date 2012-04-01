@@ -102,10 +102,6 @@ function get_categories()
     mysql_query("SET NAMES utf8");
     $query = "SELECT * FROM categories ORDER BY ordering";
     $res = mysql_query($query,$db);
-//    while($row = mysql_fetch_array($res))
-//    {
-//        $category_array[]=array('id'=>$row[0],'name'=>$row[1],'date'=>$row[2]);
-//    }
     return $res;
     
     

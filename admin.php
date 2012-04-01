@@ -20,13 +20,25 @@ include_once 'modules/bread_crumbs.php';
 
 // разборка get (тернарными операциями)
 $page = isset($_GET['section']) ? $_GET['section'] : 'main';
-$action = isset($_GET['action']) ? $_GET['action'] : '';
+$get_action = isset($_GET['action']) ? $_GET['action'] : '';
+$post_action = isset($_POST['action']) ? $_POST['action'] : '';
 
 // выполнение задач
-if (($action == 'save')&&($page == 'categories'))
+if (($get_action  == 'save')&&($post_action  == 'save')&&($page == 'categories'))
 {
-    
-    notify('Изменения сохранены!');
+    //POST >> [][]
+    $i = 0;
+    while (isset($_POST['id_'.$i]))
+    {
+	$categories[$i]['id'] = $_POST['id_'.$i];
+	$categories[$i]['name'] = $_POST['cat_'.$i];
+	$categories[$i]['ordering'] = $_POST['ordering_'.$i];
+	$i++;
+    }
+    if (recreate_categories($categories))
+	notify('Изменения сохранены!');
+    else
+	notify('Сохранение завершилось неудачей!');
 }
 
 
@@ -42,7 +54,7 @@ switch ($page)
 	$page_areas['content']=$tpl_loader->Load("admin-main");
 	break;
     case 'categories':
-	if ($action != 'save') notify('Внимание! При удалении категории удаляются все связанные с ней темы и сообщения!');
+	if ($get_action != 'save') notify('Внимание! При удалении категории удаляются все связанные с ней темы и сообщения!');
 	$arr = get_categories();
 	$page_areas['items'] = '';
 	while ($row = mysql_fetch_assoc($arr)) 
