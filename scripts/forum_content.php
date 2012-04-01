@@ -23,6 +23,7 @@ function construct_forum_content()
         {
             $arr = get_categories();
             $content='';
+            
             while ($row = mysql_fetch_assoc($arr)) 
             {
                 if (is_may_to_use_permission_on_category(get_cookies_login(), $row['id'], "see_category") ||
@@ -31,9 +32,11 @@ function construct_forum_content()
                         $category_vars['name']=$row['name'];
                         $category_vars['date']=$row['date'];
                         $category_vars['id']=$row['id'];
+                        
                         $content.=$tpl_loader->Load("category",$category_vars);
                     }
             }
+            
             return $content;
         }
         

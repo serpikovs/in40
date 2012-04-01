@@ -37,4 +37,21 @@ function save_all_user_information($all_inf)
     return mysql_query($query,$db);
    
 }
+
+function reordering_categories($categories)
+{
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db("in40", $db);
+    mysql_query("SET NAMES utf8");
+    for ($i=0; $i<count($categories); $i++)
+	{
+	    $query = "UPDATE categories SET
+                ordering='".$categories[$i]['ordering']."' WHERE
+                id='".$categories[$i]['id']."'";
+	    if (!mysql_query($query, $db))
+		return false;
+	}
+	
+    return true;
+}
 ?>
