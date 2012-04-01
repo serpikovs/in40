@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 01 2012 г., 01:28
+-- Время создания: Апр 01 2012 г., 09:17
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `date`, `ordering`) VALUES
-(1, 'Категория 1', '2012-01-17 00:00:00', 0),
-(2, 'Категория 2', '2012-01-17 00:00:00', 1),
-(3, 'Категория 3', '2012-01-17 00:00:00', 2);
+(1, 'Категория 1', '2012-01-17 00:00:00', 1),
+(2, 'Категория 2', '2012-01-17 00:00:00', 2),
+(3, 'Категория 3', '2012-01-17 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -365,9 +365,9 @@ ALTER TABLE `ban_list`
 -- Ограничения внешнего ключа таблицы `categories_permissions`
 --
 ALTER TABLE `categories_permissions`
-  ADD CONSTRAINT `categories_permissions_ibfk_1` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
-  ADD CONSTRAINT `categories_permissions_ibfk_2` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`),
-  ADD CONSTRAINT `categories_permissions_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `categories_permissions_ibfk_6` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `categories_permissions_ibfk_4` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
+  ADD CONSTRAINT `categories_permissions_ibfk_5` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`);
 
 --
 -- Ограничения внешнего ключа таблицы `poll_variants`
