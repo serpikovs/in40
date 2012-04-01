@@ -1,4 +1,2 @@
 /git_keys
-/nbproject/private/
-/nbproject/project.properties
-/nbproject
+/nbproject*

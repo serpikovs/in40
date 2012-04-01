@@ -9,6 +9,7 @@ define("Katrin", 1);
 // добавляем библиотеки
 include_once 'scripts/db/select.php';
 include_once 'scripts/db/insert.php';
+include_once 'scripts/db/update.php';
 include_once 'scripts/cookies.php';
 include_once 'themes/core.php';
 
@@ -31,11 +32,10 @@ if (($get_action  == 'save')&&($post_action  == 'save')&&($page == 'categories')
     while (isset($_POST['id_'.$i]))
     {
 	$categories[$i]['id'] = $_POST['id_'.$i];
-	$categories[$i]['name'] = $_POST['cat_'.$i];
 	$categories[$i]['ordering'] = $_POST['ordering_'.$i];
 	$i++;
     }
-    if (recreate_categories($categories))
+    if (reordering_categories($categories))
 	notify('Изменения сохранены!');
     else
 	notify('Сохранение завершилось неудачей!');
