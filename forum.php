@@ -12,6 +12,7 @@ include_once 'themes/core.php';
 include_once 'modules/notify.php';
 include_once 'scripts/forum_content.php';
 include_once 'scripts/db/insert.php';
+include_once 'scripts/db/update.php';
 include_once 'scripts/cookies.php';
 include_once 'scripts/db/delete.php';
 
@@ -21,6 +22,16 @@ include_once 'modules/bread_crumbs.php';
 include_once 'modules/menu.php';
 
 //выполнение действий
+//закрыть тему
+if (isset($_GET['action'])==true && $_GET['action']=="close_topic")
+            {
+                if (is_may_to_use_permission(get_cookies_login(),"close_topics"))
+                    {
+                        close_topic($_GET['topic_id']);
+                        $new_loc="forum.php?category=".$_GET['category_id'];
+                        header('Location: '.$new_loc); 
+                    }
+            }
 //создание темы
 if (isset($_POST['action']) && $_POST['action']=="create_new_topic"  && isset($_POST['category_id']) && isset($_POST['post_message']) && isset($_POST['new_topic_name']) )
     {
@@ -58,6 +69,9 @@ if (isset($_GET['action'])==true && $_GET['action']=="delete_topic")
                         header('Location: '.$new_loc); 
                     }
             }
+            
+
+            
     
 //$local_theme_scripts=array("topic.js");
 //$tpl_loader->set_local_theme_scripts($local_theme_scripts);

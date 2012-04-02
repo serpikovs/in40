@@ -58,11 +58,21 @@ function construct_forum_content()
                 if ($row['is_closed']=="1")
                     {
                         $topic_vars['is_closed']="Тема закрыта";
+                        $topic_vars['close_topic_link']="";
                     }
                     else
                     {
                         $topic_vars['is_closed']="";
+                        //если есть право закрывать темы, то выводим линк на закрытие
+                        if (is_may_to_use_permission(get_cookies_login(),"close_topics"))
+                            {
+                                $topic_vars['close_topic_link']="forum.php?action=close_topic&category_id=".$_GET['category'];
+                                $topic_vars['close_topic_link'].="&topic_id=".$row['id'];
+                                $topic_vars['close_topic_link'].="&user_id=".get_user_id_by_login(get_cookies_login());
+                                $topic_vars['close_topic_link']="<a href='".$topic_vars['close_topic_link']."'>Закрыть тему</a>";
+                            }
                     }
+                
                 
                 $content.=$tpl_loader->Load("topic",$topic_vars);
             }

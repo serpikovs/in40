@@ -13,6 +13,10 @@
             <td width=150>
                 <div class='is_closed_topic-font'>
                     <?=$this->is_closed?>
+                    
+                </div>
+                <div class='close_topic-font'>
+                    <?=$this->close_topic_link?>
                 </div>
             </td>
             

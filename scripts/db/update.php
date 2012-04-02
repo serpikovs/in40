@@ -47,4 +47,15 @@ function update_category($category)
             "WHERE id='".$category['id']."'";
     return mysql_query($query, $db);
 }
+
+function close_topic($topic_id)
+{
+    $db = mysql_connect(host, user, pass);
+    mysql_select_db("in40", $db);
+    mysql_query("SET NAMES utf8");
+    $query = "UPDATE topics ".
+                "SET is_closed='1'          
+             WHERE id='".$topic_id."'";
+    return mysql_query($query, $db);
+}
 ?>
