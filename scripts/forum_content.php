@@ -54,7 +54,15 @@ function construct_forum_content()
                         $topic_vars['delete_topic_link'].="&user_id=".get_user_id_by_login(get_cookies_login());
                         $topic_vars['delete_topic_link']="<a href='".$topic_vars['delete_topic_link']."'>удалить</a>";
                     }
-                
+                //если тема закрыта, то выводим в списках тем в каждом элементе этого списка "тема закрыта"
+                if ($row['is_closed']=="1")
+                    {
+                        $topic_vars['is_closed']="Тема закрыта";
+                    }
+                    else
+                    {
+                        $topic_vars['is_closed']="";
+                    }
                 
                 $content.=$tpl_loader->Load("topic",$topic_vars);
             }
@@ -110,8 +118,12 @@ function construct_forum_content()
             }
             
             //выдача формы ответа
-            $reply_to_post_vars['topic_id']=$_GET['topic'];
-            $content.=$tpl_loader->Load("reply_to_post",$reply_to_post_vars);
+            if (!is_closed_topic($_GET['topic']))
+                {
+                    
+                    $reply_to_post_vars['topic_id']=$_GET['topic'];
+                    $content.=$tpl_loader->Load("reply_to_post",$reply_to_post_vars);
+                }
             return $content;
         }
         

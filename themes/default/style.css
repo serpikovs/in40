@@ -524,3 +524,8 @@ html, body
     float:left;
 }
 
+.is_closed_topic-font
+{
+    color: red;
+}
+

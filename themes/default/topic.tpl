@@ -2,12 +2,18 @@
     <table border=0>
         <tr>
             
-            <td width=600>
+            <td width=450>
                 <a href='<?=site?>forum.php?topic=<?=$this->id?>'>
                     <div class='topic-name'  >
                     <?=$this->name?>
                     </div>
                 </a>
+            </td>
+            
+            <td width=150>
+                <div class='is_closed_topic-font'>
+                    <?=$this->is_closed?>
+                </div>
             </td>
             
             <td width=100>

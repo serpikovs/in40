@@ -348,4 +348,23 @@ function get_all_user_information($id)
         $query = "SELECT * FROM users WHERE id='".$id."'";
         return mysql_query($query,$db);
     }
+    
+function is_closed_topic($topic_id)
+{
+        $db = mysql_connect(host,user,pass);
+        mysql_select_db("in40",$db);
+        mysql_query("SET NAMES utf8");
+        $query = "SELECT is_closed FROM topics WHERE id='".$topic_id."'";
+        $res = mysql_query($query,$db);
+        $row=mysql_fetch_array($res);
+        print_r($res['is_closed']);
+        if ($row['is_closed']=="1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+}
 ?>
