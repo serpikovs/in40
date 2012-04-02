@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 01 2012 г., 09:17
+-- Время создания: Апр 02 2012 г., 18:37
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `date`, `ordering`) VALUES
-(1, 'Категория 1', '2012-01-17 00:00:00', 1),
+(1, 'Категория 1', '2012-01-17 00:00:00', 0),
 (2, 'Категория 2', '2012-01-17 00:00:00', 2),
-(3, 'Категория 3', '2012-01-17 00:00:00', 0);
+(3, 'Категория 3', '2012-01-17 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `general_permissions` (
 INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 ('banning', 'Право банить'),
 ('category_full_access', 'Доступ ко всем операциям с категориями'),
+('close_topics', 'Право закрывать топики'),
 ('create_topics', 'Право создавать темы'),
 ('delete_own_theme', 'Право удалять свои темы'),
 ('delete_posts', 'Право удалять посты'),
@@ -201,14 +202,15 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `header` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`,`topic_id`),
   KEY `theme_id` (`topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `posts`
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `voite_y`, `voite_n`, `header`) VALUES
-(1, 6, '1', 0, '2012-03-31 23:10:43', 1, 0, 0, '');
+(1, 6, '1', 0, '2012-03-31 23:10:43', 1, 0, 0, ''),
+(2, 6, '11', 0, '2012-04-01 11:26:17', 2, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -257,17 +259,18 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `is_news_theme` tinyint(1) NOT NULL,
+  `is_closed` tinyint(1) NOT NULL,
   UNIQUE KEY `id` (`id`,`category_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `topics`
 --
 
-INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_news_theme`) VALUES
-(1, '1', 6, 1, '2012-03-31 23:10:43', 0);
+INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_closed`) VALUES
+(1, '1', 6, 1, '2012-03-31 23:10:43', 1),
+(2, '2', 6, 1, '2012-04-01 11:26:17', 1);
 
 -- --------------------------------------------------------
 
@@ -347,6 +350,7 @@ CREATE TABLE IF NOT EXISTS `user_groups_permissions` (
 
 INSERT INTO `user_groups_permissions` (`user_group_id`, `permission`) VALUES
 (0, 'category_full_access'),
+(0, 'close_topics'),
 (0, 'create_topics'),
 (0, 'delete_posts'),
 (0, 'delete_smbd_else_theme');
@@ -365,9 +369,9 @@ ALTER TABLE `ban_list`
 -- Ограничения внешнего ключа таблицы `categories_permissions`
 --
 ALTER TABLE `categories_permissions`
-  ADD CONSTRAINT `categories_permissions_ibfk_6` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `categories_permissions_ibfk_4` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
-  ADD CONSTRAINT `categories_permissions_ibfk_5` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`);
+  ADD CONSTRAINT `categories_permissions_ibfk_5` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`),
+  ADD CONSTRAINT `categories_permissions_ibfk_6` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `poll_variants`
