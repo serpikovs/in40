@@ -104,7 +104,6 @@ function get_categories()
     $res = mysql_query($query,$db);
     return $res;
     
-    
 }
 
 
@@ -113,7 +112,7 @@ function get_topics($category_id)
     $db = mysql_connect(host,user,pass);
     mysql_select_db("in40",$db);
     mysql_query("SET NAMES utf8");
-    $query = "SELECT * FROM topics WHERE category_id='".$category_id."' ORDER BY id";
+    $query = "SELECT * FROM topics WHERE category_id='".$category_id."' ORDER BY date DESC";
     $res = mysql_query($query,$db);
 //    while($row = mysql_fetch_array($res))
 //    {

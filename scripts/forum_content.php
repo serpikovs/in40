@@ -23,8 +23,10 @@ function construct_forum_content()
         {
             $arr = get_categories();
             $content='';
+            
             while ($row = mysql_fetch_assoc($arr)) 
             {
+                
                 if (is_may_to_use_permission_on_category(get_cookies_login(), $row['id'], "see_category") ||
                     is_may_to_use_permission_on_category(get_cookies_login(), $row['id'], "category_full_access"))
                     {
