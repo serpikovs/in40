@@ -31,7 +31,7 @@
                Пароль:
             </td>
             <td>
-                <input type="text" name="password_1" MAXLENGTH="40" id="pwd_1" onKeyUp="check_pwd()" onblur="check_pwd()" class="reg-input">
+                <input type="password" name="password_1" MAXLENGTH="40" id="pwd_1" onKeyUp="check_pwd()" onblur="check_pwd()" class="reg-input">
             </td>
 	    <td>
                 <div id="correct_pwd_text1" style="color: red">
@@ -44,7 +44,7 @@
                  Пароль еще раз:
             </td>
             <td>
-                <input type="text" name="password_2" MAXLENGTH="40" id="pwd_2" onKeyUp="compare_pwds()" onblur="compare_pwds()" class="reg-input">
+                <input type="password" name="password_2" MAXLENGTH="40" id="pwd_2" onKeyUp="compare_pwds()" onblur="compare_pwds()" class="reg-input">
             </td>
             <td>
                 <div id="correct_pwd_text2" style="color: red">

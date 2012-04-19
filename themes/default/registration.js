@@ -1,10 +1,10 @@
-/*window.onkeyup=function()
+window.onkeyup=function()
 {
     is_all_correct();
-}*/
+}
 
             
- window.onload=check_per_second();
+ window.onload=function(){document.getElementById('send_data').disabled="disabled";};
 
 // проверка пароля - от 4х знаков
 function check_pwd()
@@ -103,6 +103,7 @@ function is_all_correct()
     if ((compare_pwds() && check_email() && check_login()) )
     {
 	document.getElementById('pwd').value=hex_md5(document.getElementById('pwd_1').value);
+        document.getElementById('send_data').disabled="";
 	return true;
     }
     else
@@ -110,7 +111,7 @@ function is_all_correct()
             document.getElementById('send_data').disabled="disabled";
         }
 
-    alert('При заполнении формы были допущены ошибки');
+    
     return false;
 }
 
