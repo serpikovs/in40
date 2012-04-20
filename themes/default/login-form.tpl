@@ -7,9 +7,6 @@
 	<input type="hidden" name="pwd" id="pwd"/>
     </li>
     <li class="login-item">
-	<input type="checkbox" title="Запомнить"/>
-    </li>
-    <li class="login-item">
 	<input type="submit" id="send_data" value="Войти" onclick="pwdToMD5()" />
 	<!--a href="" class="menu-link">Войти</a-->
     </li>
