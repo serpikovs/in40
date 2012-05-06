@@ -366,4 +366,16 @@ function is_closed_topic($topic_id)
                 return false;
             }
 }
+
+function get_avatar_link($user_id)
+{
+        $db = mysql_connect(host,user,pass);
+        mysql_select_db("in40",$db);
+        mysql_query("SET NAMES utf8");
+        $query = "SELECT avatar FROM users WHERE id='".$user_id."'";
+        $res = mysql_query($query,$db);
+        $row=mysql_fetch_array($res);
+        return $row['avatar'];
+        
+}
 ?>

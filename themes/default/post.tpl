@@ -1,6 +1,6 @@
 <div class="post">	
     <div class="post-row">
-        <div class="user-photo"></div>
+        <div class="user-photo"><img src="<?=$this->user_photo?>" width=55></div>
         <div class="user-info-area">
             <a class="user-nickname" href="<?=$this->user_profile?>"><?=$this->login?></a>
             <br>

@@ -99,6 +99,8 @@ function construct_forum_content()
                 $post_vars['id']=$row['id'];
                 $post_vars['date']=$row['date'];
                 $post_vars['login']=get_user_login_by_id($row['user_id']);
+                get_avatar_link($row['user_id'])!="" ? $post_vars['user_photo']=get_avatar_link($row['user_id']) : $post_vars['user_photo']="themes\\default\\empty_ava.png";
+                //$post_vars['user_photo']=get_avatar_link($row['user_id']);
                 $post_vars['user_group']=get_user_group_name_by_user_id($row['user_id']);
                 $post_vars['body']=$row['body'];
                 if ($row['voite_y']!=$row['voite_n'])

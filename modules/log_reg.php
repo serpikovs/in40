@@ -54,7 +54,7 @@ function construct_log_reg()
     if ($is_logon)
     {
 	// вывод приветствия
-	return $tpl_loader->Load('login-hello', array('username' => get_cookies_login()));
+	return $tpl_loader->Load('login-hello', array('username' => get_cookies_login(),'user_profile'=>  'user_info.php?id='.get_user_id_by_login(get_cookies_login())));
     }
     return $tpl_loader->Load('login-form');
 }

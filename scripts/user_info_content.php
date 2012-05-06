@@ -11,7 +11,8 @@ function construct_user_info_content()
     if (isset($_GET['id']) && $_GET['id']==get_user_id_by_login(get_cookies_login()))
     {
         $res = get_all_user_information($_GET['id']);
-        $row = mysql_fetch_array($res);
+        $row = mysql_fetch_array($res);        
+        get_avatar_link($_GET['id'])!="" ? $user_info_vars['user_photo']=get_avatar_link($_GET['id']) : $user_info_vars['user_photo']="themes\\default\\empty_ava.png";
         $user_info_vars['id']= $_GET['id'];
         $user_info_vars['group_name']= get_user_group_name_by_user_id($row['user_group_id']);
         $user_info_vars['login']=$row['login'];
@@ -46,6 +47,7 @@ function construct_user_info_content()
     {
         $res = get_all_user_information($_GET['id']);
         $row = mysql_fetch_array($res);
+        get_avatar_link($_GET['id'])!="" ? $user_info_vars['user_photo']=get_avatar_link($_GET['id']) : $user_info_vars['user_photo']="themes\\default\\empty_ava.png";
         $user_info_vars['group_name']= get_user_group_name_by_user_id($row['user_group_id']);
         $user_info_vars['login']=$row['login'];
         $user_info_vars['name']=$row['name'];

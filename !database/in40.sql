@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 03 2012 г., 21:50
+-- Время создания: Май 06 2012 г., 12:34
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -30,19 +30,6 @@ BEGIN
 END$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `ban_list`
---
-
-CREATE TABLE IF NOT EXISTS `ban_list` (
-  `user_id` int(11) NOT NULL,
-  `up_to` datetime NOT NULL,
-  `reason` text NOT NULL,
-  UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -159,35 +146,6 @@ INSERT INTO `menu` (`id`, `ordering`, `caption`, `link`, `short_url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `poll_head`
---
-
-CREATE TABLE IF NOT EXISTS `poll_head` (
-  `id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `head` text NOT NULL,
-  UNIQUE KEY `id` (`id`,`post_id`),
-  KEY `post_id` (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `poll_variants`
---
-
-CREATE TABLE IF NOT EXISTS `poll_variants` (
-  `id` int(11) NOT NULL,
-  `poll_id` int(11) NOT NULL,
-  `body` text NOT NULL,
-  `value` int(11) NOT NULL,
-  UNIQUE KEY `id` (`id`,`poll_id`),
-  KEY `poll_id` (`poll_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `posts`
 --
 
@@ -226,21 +184,6 @@ INSERT INTO `posts` (`id`, `user_id`, `body`, `is_first`, `date`, `topic_id`, `v
 (16, 16, 'Спустя месяц после старта продаж кроссовера Peugeot 4008 на рынок выйдет его родственник Citroen C4 Aircross — у дилеров машины появятся в середине мая.  \r\n\r\nОтличия от Peugeot — не только во внешности и нюансах комплектаций. Как и ожидалось, гамма моторов у Ситроена шире, но дизелей в ней по прежнему нет. Зато есть базовый двигатель 1.6 (117 л.с.) — такой Aircross предлагается только в самой простой комплектации Dynamique с передним приводом, двумя подушками безопасности, АБС, кондиционером, электропакетом и CD-проигрывателем за 799 тысяч рублей — на 20 тысяч дороже аналогичного Mitsubishi ASX, у которого вдобавок есть подогрев передних сидений.', 0, '2012-04-03 23:40:56', 12, 0, 0, ''),
 (17, 16, 'Mitsubishi ASX с двухлитровым мотором (150 л.с.) может оснащаться только полным приводом и клиноременным вариатором, Peugeot 4008 предлагается еще и с механической коробкой передач, а Citroen C4 Aircross 2.0 позволяет выбрать как коробку передач, так и тип привода. \r\n\r\nПереднеприводный 150-сильный кроссовер с «механикой» будет стоить 909 тысяч рублей, а с вариатором — 949 тысяч рублей — на 14 тысяч дороже, чем аналогичный Nissan Qashqai 2.0 (141 л.с.).\r\n\r\n Наконец, полноприводный Citroen C4 Aircross с «механикой» предлагается минимум за 1 млн 89 тысяч рублей, а с вариатором — за 1 млн 129 тысяч рублей. Это больше, чем просят за Peugeot 4008, зато у Ситроена уже в начальной комплектации Tendance имеются семь подушек безопасности, система стабилизации, подогрев передних сидений, задний парктроник, легкосплавные колеса и Bluetooth. ', 0, '2012-04-03 23:41:16', 12, 0, 0, ''),
 (18, 17, '1', 0, '2012-04-03 23:41:55', 12, 0, 0, '');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `private_messages`
---
-
-CREATE TABLE IF NOT EXISTS `private_messages` (
-  `to_id` int(11) NOT NULL,
-  `from_id` int(11) NOT NULL,
-  `body` text NOT NULL,
-  `date` datetime NOT NULL,
-  `id` int(11) NOT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -304,25 +247,25 @@ INSERT INTO `topics` (`id`, `name`, `user_id`, `category_id`, `date`, `is_closed
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` text NOT NULL,
+  `login` varchar(255) NOT NULL,
   `user_group_id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `father_name` text NOT NULL,
-  `family_name` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `father_name` varchar(255) NOT NULL,
+  `family_name` varchar(255) NOT NULL,
   `sex` tinyint(1) NOT NULL,
-  `country` text NOT NULL,
-  `city` text NOT NULL,
-  `avatar` text NOT NULL,
-  `mobile` text NOT NULL,
-  `icq` text NOT NULL,
-  `vk` text NOT NULL,
-  `facebook` text NOT NULL,
-  `about` text NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `icq` varchar(255) NOT NULL,
+  `vk` varchar(255) NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `about` varchar(1000) NOT NULL,
   `registration_date` datetime NOT NULL,
-  `email` text NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -330,9 +273,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `family_name`, `sex`, `country`, `city`, `avatar`, `mobile`, `icq`, `vk`, `facebook`, `about`, `registration_date`, `email`, `password`) VALUES
 (1, 'guest', 3, 'Гость', '', '', 0, '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '', ''),
-(6, 'dem0n13', 0, 'Дмитрий', 'Олегович', 'Стаценко', 1, 'Россия', 'Козельск', 'ава', '33333333', '333333', 'ва', 'ав', 'corepartners', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
-(16, 'серджио', 0, 'Сергей', 'Валерьевич', 'Серпиков', 1, 'Россия', 'Воротынск', '', '8 800 2000 600', '777777', 'http://vk.com/id9214565', 'http://www.facebook.com/?ref=logo', 'Я обычный студент', '2012-03-04 17:21:40', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
-(17, 'прохожий', 3, '', '', '', 0, '', '', '', '', '', '', '', '', '2012-04-03 23:38:43', 'blacka1ndwhite_91@mail.ru', 'b59c67bf196a4758191e42f76670ceba');
+(6, 'dem0n13', 0, 'Дмитрий', 'Олегович', 'Стаценко', 1, 'Россия', 'Козельск', '', '33333333', '333333', 'ва', 'ав', 'corepartners', '2012-02-12 23:37:33', 'd@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
+(16, 'серджио', 0, 'Сергей', 'Валерьевич', 'Серпиков', 1, 'Россия', 'Воротынск', 'http://www.gravatar.com/avatar/9e55a0adf51d785b2c8b6969fa43d3c8?s=304&d=http%3A%2F%2Fbattlelog-cdn.battlefield.com%2Fpublic%2Fbase%2Fshared%2Fdefault-avatar-304.png%3Fv%3D7909', '8 800 2000 600', '777777', 'http://vk.com/id9214565', 'http://www.facebook.com/?ref=logo', 'Я обычный студент', '2012-03-04 17:21:40', 'blackandwhite_91@mail.ru', 'c4ca4238a0b923820dcc509a6f75849b'),
+(17, 'прохожий', 3, '', '', '', 0, '', '', '', '', '', '', '', '', '2012-04-03 23:38:43', 'blacka1ndwhite_91@mail.ru', 'b59c67bf196a4758191e42f76670ceba'),
+(18, 'Genry', 3, '', '', '', 0, '', '', '', '', '', '', '', '', '2012-05-06 14:19:17', 'blacka44ndwhite_91@mail.ru', 'b59c67bf196a4758191e42f76670ceba');
 
 -- --------------------------------------------------------
 
@@ -385,24 +329,12 @@ INSERT INTO `user_groups_permissions` (`user_group_id`, `permission`) VALUES
 --
 
 --
--- Ограничения внешнего ключа таблицы `ban_list`
---
-ALTER TABLE `ban_list`
-  ADD CONSTRAINT `ban_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Ограничения внешнего ключа таблицы `categories_permissions`
 --
 ALTER TABLE `categories_permissions`
-  ADD CONSTRAINT `categories_permissions_ibfk_4` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
-  ADD CONSTRAINT `categories_permissions_ibfk_5` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`),
-  ADD CONSTRAINT `categories_permissions_ibfk_6` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `poll_variants`
---
-ALTER TABLE `poll_variants`
-  ADD CONSTRAINT `poll_variants_ibfk_1` FOREIGN KEY (`poll_id`) REFERENCES `poll_head` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `categories_permissions_ibfk_6` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `categories_permissions_ibfk_7` FOREIGN KEY (`user_group_id`) REFERENCES `user_groups` (`id`),
+  ADD CONSTRAINT `categories_permissions_ibfk_8` FOREIGN KEY (`permission`) REFERENCES `general_permissions` (`permission_names`);
 
 --
 -- Ограничения внешнего ключа таблицы `posts`
