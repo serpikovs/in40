@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 06 2012 г., 12:34
+-- Время создания: Май 14 2012 г., 19:35
 -- Версия сервера: 5.5.16
 -- Версия PHP: 5.3.8
 
@@ -39,7 +39,7 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text CHARACTER SET utf8 NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `date` datetime NOT NULL,
   `ordering` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -130,9 +130,9 @@ INSERT INTO `general_permissions` (`permission_names`, `description`) VALUES
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ordering` int(11) NOT NULL,
-  `caption` text NOT NULL,
-  `link` text NOT NULL,
-  `short_url` text NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `short_url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `header` varchar(255) NOT NULL,
   UNIQUE KEY `id` (`id`,`topic_id`),
   KEY `theme_id` (`topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Дамп данных таблицы `posts`
@@ -213,14 +213,14 @@ INSERT INTO `settings` (`setting`, `value`) VALUES
 
 CREATE TABLE IF NOT EXISTS `topics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
+  `name` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `is_closed` tinyint(1) NOT NULL,
   UNIQUE KEY `id` (`id`,`category_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Дамп данных таблицы `topics`
@@ -285,7 +285,7 @@ INSERT INTO `users` (`id`, `login`, `user_group_id`, `name`, `father_name`, `fam
 --
 
 CREATE TABLE IF NOT EXISTS `user_groups` (
-  `name` text NOT NULL,
+  `name` varchar(255) NOT NULL,
   `id` int(11) NOT NULL,
   UNIQUE KEY `code` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

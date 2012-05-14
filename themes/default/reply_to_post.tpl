@@ -4,18 +4,18 @@
 <div class="reply_to_post" id="reply_to_post">	
 <form ACTION="forum.php" METHOD="POST" onsubmit="">
     <input type="hidden" name="topic_id" value="<?=$this->topic_id?>">
-    <input type="hidden" name="action" value="post_message">
+    <input type="hidden" name="action" value="post_message"  >
     <div class="reply_to_post_row">
         <div class="reply_to_post_options">
             
         </div>
         <div class="reply_to_post_textarea">
-                <textarea class="textarea" name="post_message"></textarea>
+            <textarea class="textarea" name="post_message" id="post_message" onkeyup="flip_post_button()"></textarea>
         </div>
     </div>
     <div class="reply_to_post_row">
         <div class="reply_to_post_submit_btn">
-            <input type="submit" value="Отправить" class="reply_submit_btn">
+            <input type="submit" value="Отправить" class="reply_submit_btn" id="post_msg_btn">
         </div>
     </div>
 </form>

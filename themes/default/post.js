@@ -1,4 +1,7 @@
-window.onload=function(){document.getElementById("reply_to_post").style.display = "none"}
+window.onload=function(){
+    document.getElementById("reply_to_post").style.display = "none";
+    document.getElementById("post_msg_btn").disabled="disabled";
+}
 
 function voite(post_id,value)
 {
@@ -77,4 +80,16 @@ function flip_reply()
                 document.getElementById("reply_to_post").style.display = "none";
             }
     }
+    
+function flip_post_button()
+{
+    if (document.getElementById("post_message").value!="")
+        {
+            document.getElementById("post_msg_btn").disabled="";
+        }
+        else
+        {
+            document.getElementById("post_msg_btn").disabled="disabled";
+        }
+}
 
