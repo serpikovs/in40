@@ -3,7 +3,7 @@
 	<input type="text" name="login" value="[логин]" onFocus="hidden_watermark_l(this)" onBlur="restore_watermark_l(this)"/>
     </li>
     <li class="login-item">
-	<input type="text" id="original_pwd"  value="[пароль]" onFocus="hidden_watermark_p(this)" onBlur="restore_watermark_p(this)"/>
+	<input type="password" id="original_pwd"  value="[пароль]" onFocus="hidden_watermark_p(this)" onBlur="restore_watermark_p(this)"/>
 	<input type="hidden" name="pwd" id="pwd"/>
     </li>
     <li class="login-item">

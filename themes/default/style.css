@@ -244,6 +244,14 @@ html, body
     border: 0px;
 }
 
+.login-item input[type="password"]
+{
+    width: 100px;
+    font-size: 10px;
+    color: #333;
+    border: 0px;
+}
+
 .login-item input[type="checkbox"]
 {
     position: relative;
