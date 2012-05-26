@@ -1,1 +1,1 @@
-<a href="index.php" class="logo-link">Modern Forum Engine</a>
+<a href="index.php" class="logo-link">Калужский форум</a>

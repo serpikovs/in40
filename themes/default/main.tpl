@@ -62,8 +62,10 @@
 	<div class="bottom-part">
 	    <div class="footer-area">
 		<div class="wrapper">
-		    ПОДВАЛ
-		</div>
+		    Разработчики:<br>
+                    Серпиков Сергей - iam32five@gmail.com<br>
+                    Стаценко Дмитрий - dem0n13.kaluga@gmail.com<br>
+                </div>
 	    </div>
 	</div>
     </body>
